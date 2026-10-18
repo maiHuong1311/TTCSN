@@ -3,6 +3,7 @@ project-data/.local/
 project-data/archives/
 backend/target/
 backend/uploads/
+backend/.deploy/
 frontend/node_modules/
 frontend/dist/
 frontend/*.tsbuildinfo

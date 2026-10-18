@@ -1,0 +1,43 @@
+name: forme
+
+services:
+  backend:
+    image: ${FORME_IMAGE:?Run deploy.sh with an image tag first}
+    restart: unless-stopped
+    init: true
+    network_mode: host
+    # Docker Compose >= 2.30. Read secrets literally, including $ characters.
+    env_file:
+      - path: ./.env
+        format: raw
+    environment:
+      SPRING_PROFILES_ACTIVE: aws
+      SERVER_ADDRESS: 0.0.0.0
+      SERVER_PORT: "8081"
+      PRODUCT_IMAGES_DIRECTORY: /app/uploads
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m -XX:MaxMetaspaceSize=192m -XX:ReservedCodeCacheSize=64m
+    volumes:
+      - type: bind
+        source: ./uploads/product-images
+        target: /app/uploads
+        bind:
+          create_host_path: false
+    mem_limit: 640m
+    cpus: 1.0
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--max-time", "4", "http://127.0.0.1:8081/api/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,5 +1,13 @@
 # Kết quả kiểm tra — 18/10/2026
 
+## Cấu hình deploy EC2 — 19/10/2026
+
+- Thêm Docker Compose chạy backend cổng 8081, dùng MySQL/Redis trên host; `.env` nằm cạnh Compose tại `~/ttcsn/TTCSN/backend`, được đọc raw và không bị source/ghi đè. Thư mục ảnh bind mount `backend/uploads/product-images`.
+- `bash -n backend/deploy.sh` đạt. Script test bằng Docker/AWS giả: **7 ca đạt**, gồm deploy thành công, rollback thành công/thất bại, lỗi bản đầu, lỗi pull không thay container, từ chối env/tag sai. Không kết nối máy chủ hoặc thay đổi database khi kiểm thử.
+- Docker Compose chính thức v5.6.0 (đã xác minh SHA-256) chạy `config --quiet` thành công với fixture giả; kiểm tra host networking, port 8081, dấu `$`/`#` và dấu `&` trong JDBC URL. `config` escape dollar khi kết xuất cấu hình; fixture đã kiểm tra có xét quy tắc này.
+- Workflow đã được `actionlint v1.7.12` (xác minh SHA-256) kiểm tra thành công. Các action được ghim bằng commit SHA. Workflow chỉ deploy main, test với MySQL/Redis riêng, push ECR rồi SSH gọi script theo SHA.
+- Chưa build Docker image thực vì máy phiên này không có Docker Engine; chưa chạy workflow hoặc deploy EC2. Cần khai báo quyền push ECR cho GitHub, các SSH secrets và cài Compose >=2.30 trên EC2 trước khi chạy. Hướng dẫn: `DEPLOY_EC2.md`.
+
 ## Tải ảnh sản phẩm từ máy — 18/10/2026
 
 - Thay ô nhập liên kết ở form sản phẩm và biến thể bằng nút chọn ảnh JPG/PNG từ máy, xem trước và xóa ảnh khỏi danh sách. Chờ tải ảnh hoàn tất trước khi lưu; ảnh theo màu được chia sẻ cho các kích cỡ cùng màu.
