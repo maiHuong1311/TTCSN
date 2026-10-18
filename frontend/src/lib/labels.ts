@@ -1,0 +1,153 @@
+// Display labels only: keep API enum values unchanged.
+const labels: Record<string, string> = {
+  Active: 'Đang hoạt động',
+  Inactive: 'Ngừng bán',
+  Female: 'Nữ',
+  Male: 'Nam',
+  Unisex: 'Nam và nữ',
+  Pending: 'Chờ xác nhận',
+  Confirmed: 'Đã xác nhận',
+  Shipping: 'Đang giao hàng',
+  Delivered: 'Đã giao hàng',
+  Cancelled: 'Đã hủy',
+  COD: 'Thanh toán khi nhận hàng',
+  VietQR: 'VietQR',
+  DemoQR: 'QR giả lập',
+  EWallet: 'Ví điện tử',
+  Percentage: 'Theo phần trăm',
+  Fixed: 'Số tiền cố định',
+  Customer: 'Khách hàng',
+  Admin: 'Quản trị viên',
+  Blocked: 'Đã khóa',
+  Paid: 'Đã thanh toán',
+  Failed: 'Không thành công',
+  Refunded: 'Đã ghi nhận hoàn tiền',
+  Sand: 'Màu cát',
+  Olive: 'Xanh ô liu',
+  'Not connected': 'Chưa kết nối',
+  'Temporarily unavailable': 'Tạm thời không khả dụng',
+};
+export const display = (value: string) => labels[value] ?? value;
+
+const errors: Record<string, string> = {
+  'Email is already registered': 'Địa chỉ email này đã được đăng ký.',
+  'Username is already registered': 'Tên đăng nhập này đã được sử dụng.',
+  'Invalid email or password': 'Email, tên đăng nhập hoặc mật khẩu không chính xác.',
+  'Account is blocked': 'Tài khoản đã bị khóa. Vui lòng liên hệ quản trị viên.',
+  'User no longer exists': 'Tài khoản không còn tồn tại.',
+  'Cannot block your own account': 'Bạn không thể tự khóa tài khoản của mình.',
+  'Invalid status': 'Trạng thái không hợp lệ.',
+  'User not found': 'Không tìm thấy người dùng.',
+  'Invalid or expired access token': 'Phiên đăng nhập không hợp lệ hoặc đã hết hạn.',
+  'A valid Bearer token is required': 'Vui lòng đăng nhập để tiếp tục.',
+  'Admin access is required': 'Bạn cần quyền quản trị viên để thực hiện thao tác này.',
+  'Category cycle': 'Danh mục cha không được tạo thành vòng lặp.',
+  'Invalid pagination': 'Thông tin phân trang không hợp lệ.',
+  'Category does not exist': 'Danh mục không tồn tại.',
+  'Sale price exceeds price': 'Giá khuyến mãi không được lớn hơn giá gốc.',
+  'Variant belongs to another product': 'Biến thể thuộc về một sản phẩm khác.',
+  'Duplicate variant': 'Biến thể bị trùng lặp.',
+  'Keep existing variants; set stock to zero to retire them':
+    'Vui lòng giữ các biến thể hiện có; đặt tồn kho bằng 0 để ngừng bán.',
+  'Product unavailable or insufficient stock': 'Sản phẩm ngừng bán hoặc không đủ số lượng tồn kho.',
+  'Catalog item not found': 'Không tìm thấy sản phẩm hoặc danh mục.',
+  'Address not found': 'Không tìm thấy địa chỉ giao hàng.',
+  'Insufficient stock or quantity exceeds 100':
+    'Tồn kho không đủ hoặc số lượng vượt quá 100 sản phẩm.',
+  'Cart item not found': 'Không tìm thấy sản phẩm trong giỏ hàng.',
+  'Invalid coupon dates or percentage': 'Thời gian áp dụng hoặc tỷ lệ giảm giá không hợp lệ.',
+  'Coupon not found': 'Không tìm thấy mã giảm giá.',
+  'Coupon is not active': 'Mã giảm giá chưa có hiệu lực hoặc đã hết hạn.',
+  'Coupon usage limit reached': 'Mã giảm giá đã hết lượt sử dụng.',
+  'Order does not meet coupon minimum':
+    'Đơn hàng chưa đạt giá trị tối thiểu để áp dụng mã giảm giá.',
+  'Cart is empty': 'Giỏ hàng đang trống.',
+  'Only pending orders can be cancelled by customers':
+    'Bạn chỉ có thể hủy đơn hàng đang chờ xác nhận.',
+  'Invalid order status transition': 'Không thể chuyển đơn hàng sang trạng thái này.',
+  'Online payment must be confirmed before shipping':
+    'Cần xác nhận thanh toán trực tuyến trước khi giao hàng.',
+  'Payment cannot be confirmed': 'Không thể xác nhận khoản thanh toán này.',
+  'Transaction reference is required': 'Vui lòng nhập mã giao dịch thanh toán.',
+  'Order not found': 'Không tìm thấy đơn hàng.',
+  'Reviews require a delivered purchase':
+    'Bạn chỉ có thể đánh giá sản phẩm đã mua và được giao thành công.',
+  'You already reviewed this product': 'Bạn đã đánh giá sản phẩm này.',
+  'Request validation failed': 'Thông tin chưa hợp lệ. Vui lòng kiểm tra lại.',
+  'Malformed request or invalid parameter': 'Dữ liệu gửi lên hoặc tham số không hợp lệ.',
+  'A unique value is already used or this record is referenced by other data':
+    'Dữ liệu bị trùng hoặc đang được sử dụng bởi bản ghi khác.',
+  'An unexpected server error occurred': 'Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.',
+  'Failed to fetch': 'Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối.',
+  'NetworkError when attempting to fetch resource.':
+    'Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối.',
+  'Request failed': 'Không thể thực hiện yêu cầu. Vui lòng thử lại.',
+  'Advisor unavailable': 'Trợ lý hiện không khả dụng.',
+  'Advisor connection ended before a response':
+    'Kết nối với trợ lý đã kết thúc trước khi có phản hồi. Vui lòng thử lại.',
+};
+export const errorText = (message: string) => errors[message] ?? message;
+const fields: Record<string, string> = {
+  email: 'Email',
+  identifier: 'Email hoặc tên đăng nhập',
+  password: 'Mật khẩu',
+  token: 'Liên kết đặt lại mật khẩu',
+  confirmPassword: 'Xác nhận mật khẩu',
+  fullName: 'Họ và tên',
+  username: 'Tên đăng nhập',
+  phoneNumber: 'Số điện thoại',
+  verificationCode: 'Mã xác minh email',
+  otp: 'Mã OTP',
+  heightCm: 'Chiều cao',
+  weightKg: 'Cân nặng',
+  preferredStyle: 'Phong cách yêu thích',
+  receiverName: 'Tên người nhận',
+  province: 'Tỉnh / thành phố',
+  detailAddress: 'Địa chỉ chi tiết',
+  isDefault: 'Địa chỉ mặc định',
+  productName: 'Tên sản phẩm',
+  categoryId: 'Danh mục',
+  categoryName: 'Tên danh mục',
+  parentId: 'Danh mục cha',
+  description: 'Mô tả',
+  brand: 'Thương hiệu',
+  material: 'Chất liệu',
+  gender: 'Đối tượng',
+  price: 'Giá gốc',
+  salePrice: 'Giá khuyến mãi',
+  status: 'Trạng thái',
+  variants: 'Biến thể',
+  variantId: 'Biến thể',
+  size: 'Kích cỡ',
+  color: 'Màu sắc',
+  stockQuantity: 'Tồn kho',
+  sku: 'SKU',
+  images: 'Ảnh sản phẩm',
+  quantity: 'Số lượng',
+  addressId: 'Địa chỉ giao hàng',
+  paymentMethod: 'Phương thức thanh toán',
+  couponCode: 'Mã giảm giá',
+  note: 'Ghi chú',
+  discountType: 'Loại giảm giá',
+  discountValue: 'Giá trị giảm',
+  minOrderValue: 'Giá trị đơn tối thiểu',
+  usageLimit: 'Giới hạn sử dụng',
+  startDate: 'Ngày bắt đầu',
+  endDate: 'Ngày kết thúc',
+  rating: 'Điểm đánh giá',
+  comment: 'Nội dung đánh giá',
+  imageUrl: 'Liên kết ảnh',
+  message: 'Câu hỏi',
+  orderId: 'Mã đơn hàng',
+  transactionId: 'Mã giao dịch',
+};
+export const fieldLabel = (field: string) =>
+  field
+    .split('.')
+    .map((part) => {
+      const match = part.match(/^(\w+)\[(\d+)\]$/);
+      return match
+        ? (fields[match[1]] ?? match[1]) + ' ' + (Number(match[2]) + 1)
+        : (fields[part] ?? part);
+    })
+    .join(' · ');

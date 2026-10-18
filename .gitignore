@@ -1,0 +1,13 @@
+project-data/.m2/
+project-data/.local/
+project-data/archives/
+backend/target/
+backend/uploads/
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+.env
+.env.*
+!**/.env.example
+project-data/.env
+*.log

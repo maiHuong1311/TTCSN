@@ -1,0 +1,579 @@
+{
+  "retrieved": "2026-10-18",
+  "products": [
+    {
+      "sampleKey": "FRM-A26-9",
+      "name": "Áo polo nữ tay chờm phối viền",
+      "categoryId": 1,
+      "material": "Vải thun",
+      "price": 329000,
+      "salePrice": 299000,
+      "description": "Thiết kế cổ polo phối viền và tay chờm gọn gàng, dễ kết hợp với quần suông hoặc chân váy. Phù hợp mặc đi làm, đi học và dạo phố.",
+      "source": "https://cardina.vn/products/ao-polo-tay-chom-phoi-vien-bo-gau",
+      "colors": [
+        {
+          "color": "Hồng tây",
+          "imageUrl": "/assets/photos/collection-9-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-thun-polo__7__1347102bb7614d41aabc3e59b479ef6c.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-thun-polo__7__1347102bb7614d41aabc3e59b479ef6c_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Hồng đất",
+          "imageUrl": "/assets/photos/collection-9-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-thun-polo__10__f8b046b376414dca9769b25ce11e6302.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-thun-polo__10__f8b046b376414dca9769b25ce11e6302_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-10",
+      "name": "Áo ren cổ cao dài tay",
+      "categoryId": 1,
+      "material": "Vải ren co giãn",
+      "price": 349000,
+      "salePrice": null,
+      "description": "Áo dài tay cổ cao với bề mặt ren tạo điểm nhấn nhẹ nhàng. Có thể phối cùng áo khoác và quần cạp cao cho những ngày trời mát.",
+      "source": "https://cardina.vn/products/ao-giu-nhiet-ren-co-leo-1",
+      "colors": [
+        {
+          "color": "Trắng",
+          "imageUrl": "/assets/photos/collection-10-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-giu-nhiet-ren__4__c08f2c513a324a7983f1dd4bcd567a28.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-giu-nhiet-ren__4__c08f2c513a324a7983f1dd4bcd567a28_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/collection-10-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-giu-nhiet-ren__15__467a47fc0814479b89cf29d312b9f469.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-giu-nhiet-ren__15__467a47fc0814479b89cf29d312b9f469_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-11",
+      "name": "Áo khoác gió nữ dáng ngắn",
+      "categoryId": 1,
+      "material": "Vải gió",
+      "price": 599000,
+      "salePrice": 549000,
+      "description": "Áo khoác dáng ngắn với gấu rút tạo phom linh hoạt. Thích hợp khoác ngoài áo thun khi đi dạo hoặc di chuyển hằng ngày.",
+      "source": "https://cardina.vn/products/ao-khoac-ngan-can-than-rut-gau",
+      "colors": [
+        {
+          "color": "Trắng",
+          "imageUrl": "/assets/photos/collection-11-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-gio-dang-ngan__5__3378a7fa5a214a3fbba95721c74aee8a.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-gio-dang-ngan__5__3378a7fa5a214a3fbba95721c74aee8a_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Xanh mint",
+          "imageUrl": "/assets/photos/collection-11-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-gio-dang-ngan__13__441ba2fd5e7c4b1f9fcbd5caa67d3389.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-gio-dang-ngan__13__441ba2fd5e7c4b1f9fcbd5caa67d3389_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-12",
+      "name": "Áo len sọc phối cổ sơ mi",
+      "categoryId": 1,
+      "material": "Vải len dệt",
+      "price": 549000,
+      "salePrice": null,
+      "description": "Áo len sọc dài tay kết hợp cổ sơ mi tạo vẻ chỉn chu. Dáng vai chờm dễ phối với quần dài và chân váy cho trang phục công sở.",
+      "source": "https://cardina.vn/products/ao-dai-tay-vai-chom-phoi-co-so-mi-1",
+      "colors": [
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/collection-12-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-len-soc-dai-tay__1__40ed7565056e410b9dcce976fdf352e5.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-len-soc-dai-tay__1__40ed7565056e410b9dcce976fdf352e5_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Ghi mi lăng",
+          "imageUrl": "/assets/photos/collection-12-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-len-soc-dai-tay__6__d86e23098263417681674bb0fd5be228.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-len-soc-dai-tay__6__d86e23098263417681674bb0fd5be228_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-13",
+      "name": "Quần nỉ suông cạp chun dây rút",
+      "categoryId": 2,
+      "material": "Vải nỉ",
+      "price": 459000,
+      "salePrice": 419000,
+      "description": "Quần dáng suông với cạp chun và dây rút thuận tiện điều chỉnh. Phối cùng áo thun hoặc áo nỉ để có một bộ trang phục thoải mái.",
+      "source": "https://cardina.vn/products/quan-suong-cap-chun-luon-day",
+      "colors": [
+        {
+          "color": "Nâu tây",
+          "imageUrl": "/assets/photos/collection-13-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-ni-suong-cap-chun__13__bf493056d9f84ff885c63fec49690138.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-ni-suong-cap-chun__13__bf493056d9f84ff885c63fec49690138_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/collection-13-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-ni-suong-cap-chun__2__03d8e6d050874f1fad6927f9cfaa0082.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-ni-suong-cap-chun__2__03d8e6d050874f1fad6927f9cfaa0082_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-14",
+      "name": "Quần kaki suông cạp cao",
+      "categoryId": 2,
+      "material": "Vải kaki",
+      "price": 529000,
+      "salePrice": null,
+      "description": "Thiết kế cạp cao, ống suông và đường diễu phía trước tạo phom gọn gàng. Dễ kết hợp cùng sơ mi hoặc áo polo khi đi làm.",
+      "source": "https://cardina.vn/products/quan-suong-cap-cao-dieu-than-truoc",
+      "colors": [
+        {
+          "color": "Nâu lạnh",
+          "imageUrl": "/assets/photos/collection-14-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-suong-kaki-cap-cao__18__37b317a563054d7db90804b056a21581.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-suong-kaki-cap-cao__18__37b317a563054d7db90804b056a21581_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Trắng gạo",
+          "imageUrl": "/assets/photos/collection-14-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-suong-kaki-cap-cao__21__dd325587b18844f8acb0a24d2f67df95.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-suong-kaki-cap-cao__21__dd325587b18844f8acb0a24d2f67df95_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-15",
+      "name": "Quần culottes lửng dáng suông",
+      "categoryId": 2,
+      "material": "Vải dệt",
+      "price": 479000,
+      "salePrice": 439000,
+      "description": "Quần lửng ống rộng giúp trang phục trông nhẹ nhàng, thanh lịch. Kết hợp với áo kiểu hoặc áo thun và giày bệt cho những buổi dạo phố.",
+      "source": "https://cardina.vn/products/quan-lung-dang-suong-culottes",
+      "colors": [
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/collection-15-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-lung-dang-suong-culottes__10__9122b8c150a74fe2944617adb57312ec.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-lung-dang-suong-culottes__10__9122b8c150a74fe2944617adb57312ec_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Nâu tây",
+          "imageUrl": "/assets/photos/collection-15-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-lung-dang-suong-culottes__11__a45d6f9487c149648c3f4339780623a1.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-lung-dang-suong-culottes__11__a45d6f9487c149648c3f4339780623a1_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-16",
+      "name": "Đầm gấm hoa dáng suông",
+      "categoryId": 3,
+      "material": "Vải gấm",
+      "price": 890000,
+      "salePrice": 790000,
+      "description": "Đầm dáng suông với họa tiết hoa nổi bật, phù hợp dự tiệc hoặc gặp gỡ cuối tuần. Phối phụ kiện tối giản để làm nổi bật trang phục.",
+      "source": "https://cardina.vn/products/dam-gam-hoa-dang-suong",
+      "colors": [
+        {
+          "color": "Xanh lục bảo",
+          "imageUrl": "/assets/photos/collection-16-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/cdn05145_copy_9ba57a2316c5473f8d4e6d2832f975ce.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/cdn05145_copy_9ba57a2316c5473f8d4e6d2832f975ce_grande.jpg",
+          "sizes": [
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Đỏ đô",
+          "imageUrl": "/assets/photos/collection-16-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/cdn05112_copy_5f4bdd5235fe4c5db27f2230173038f0.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/cdn05112_copy_5f4bdd5235fe4c5db27f2230173038f0_grande.jpg",
+          "sizes": [
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-17",
+      "name": "Chân váy denim xòe xếp ly",
+      "categoryId": 3,
+      "material": "Vải denim",
+      "price": 559000,
+      "salePrice": null,
+      "description": "Chân váy denim dáng xòe với chi tiết xếp ly hai bên. Có thể phối cùng áo thun, polo hoặc sơ mi cho phong cách trẻ trung.",
+      "source": "https://cardina.vn/products/chan-vay-xoe-xep-ly-hai-ben",
+      "colors": [
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/collection-17-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-denim-xoe__5__0ae74f9dfd92441d8243e3491477d736.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-denim-xoe__5__0ae74f9dfd92441d8243e3491477d736_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Xanh than",
+          "imageUrl": "/assets/photos/collection-17-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-denim-xoe__10__25dec732e31243cc885f6a4d72889fdf.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-denim-xoe__10__25dec732e31243cc885f6a4d72889fdf_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-18",
+      "name": "Đầm cổ tròn gân dọc phối ren",
+      "categoryId": 3,
+      "material": "Vải dệt gân phối ren",
+      "price": 749000,
+      "salePrice": 699000,
+      "description": "Đầm cổ tròn với đường gân dọc và chi tiết ren làm điểm nhấn. Dáng váy thanh lịch phù hợp đi làm, dạo phố hoặc gặp gỡ bạn bè.",
+      "source": "https://cardina.vn/products/dam-gan-doc-co-tron-trang-tri-ren",
+      "colors": [
+        {
+          "color": "Trắng",
+          "imageUrl": "/assets/photos/collection-18-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/dam-gan-doc-co-tron__3__59241e4e6db74b7dbe7a6edb9316911e.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/dam-gan-doc-co-tron__3__59241e4e6db74b7dbe7a6edb9316911e_grande.jpg",
+          "sizes": [
+            "XL",
+            "S",
+            "M",
+            "L"
+          ]
+        },
+        {
+          "color": "Be nâu",
+          "imageUrl": "/assets/photos/collection-18-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/dam-gan-doc-co-tron__1__10db838a5763485f97864525dba24da9.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/dam-gan-doc-co-tron__1__10db838a5763485f97864525dba24da9_grande.jpg",
+          "sizes": [
+            "XL",
+            "S",
+            "M",
+            "L"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-19",
+      "name": "Áo cotton cổ thuyền xếp ly eo",
+      "categoryId": 1,
+      "material": "Vải cotton",
+      "price": 379000,
+      "salePrice": 339000,
+      "description": "Áo dài tay cổ thuyền với chi tiết xếp ly eo tạo điểm nhấn nhẹ nhàng. Dễ phối cùng quần suông hoặc chân váy khi đi làm và dạo phố.",
+      "source": "https://cardina.vn/products/ao-dai-tay-co-thuyen-xep-ly-eo",
+      "colors": [
+        {
+          "color": "Nâu kẻ",
+          "imageUrl": "/assets/photos/collection-19-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-cotton-dai-tay__10__0cf523be3166473eb3be1ea87de6e18b.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-cotton-dai-tay__10__0cf523be3166473eb3be1ea87de6e18b_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Xanh kẻ",
+          "imageUrl": "/assets/photos/collection-19-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-cotton-dai-tay__3__60caf28c251b4df39f15efa50e6ea703.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-cotton-dai-tay__3__60caf28c251b4df39f15efa50e6ea703_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-20",
+      "name": "Chân váy kaki dáng suông xẻ sau",
+      "categoryId": 3,
+      "material": "Vải kaki",
+      "price": 499000,
+      "salePrice": null,
+      "description": "Chân váy dáng suông với thiết kế cạp kiểu và đường xẻ sau. Phối cùng áo sơ mi hoặc áo polo cho trang phục công sở thanh lịch.",
+      "source": "https://cardina.vn/products/chan-vay-dang-suong-cap-kieu-xe-sau",
+      "colors": [
+        {
+          "color": "Be",
+          "imageUrl": "/assets/photos/collection-20-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-cheo-kaki-dang-suong__11__0a8a44136b5f4d8c903f61bba7148735.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-cheo-kaki-dang-suong__11__0a8a44136b5f4d8c903f61bba7148735_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Ghi đậm",
+          "imageUrl": "/assets/photos/collection-20-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-cheo-kaki-dang-suong__4__e176d9ca0e844e78a1be7983db0629de.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-cheo-kaki-dang-suong__4__e176d9ca0e844e78a1be7983db0629de_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-21",
+      "name": "Áo sơ mi nữ phom rộng tay dơi",
+      "categoryId": 1,
+      "material": "Vải sơ mi",
+      "price": 559000,
+      "salePrice": 499000,
+      "description": "Áo sơ mi cổ đức với dáng rộng và tay dơi tạo vẻ nhẹ nhàng. Dễ kết hợp với quần suông hoặc chân váy khi đi làm và dạo phố.",
+      "source": "https://cardina.vn/products/ao-so-mi-co-duc-dang-suong-vai-roi",
+      "colors": [
+        {
+          "color": "Tím",
+          "imageUrl": "/assets/photos/collection-21-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-so-mi-tay-ep__4__6360d178cc214debad0acf5420710b93.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-so-mi-tay-ep__4__6360d178cc214debad0acf5420710b93_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Vàng",
+          "imageUrl": "/assets/photos/collection-21-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-so-mi-tay-ep__6__e492eb65a801487c92b3e7c3cb6b4203.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-so-mi-tay-ep__6__e492eb65a801487c92b3e7c3cb6b4203_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-22",
+      "name": "Áo khoác đũi mỏng dáng ngắn",
+      "categoryId": 1,
+      "material": "Vải đũi",
+      "price": 599000,
+      "salePrice": null,
+      "description": "Áo khoác đũi mỏng với phom gọn gàng, phù hợp khoác ngoài áo thun hoặc áo hai dây. Hai gam màu dễ phối cho trang phục thường ngày.",
+      "source": "https://cardina.vn/products/ao-khoac-mong-trendy",
+      "colors": [
+        {
+          "color": "Nâu",
+          "imageUrl": "/assets/photos/collection-22-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-dui-mong__11__8cd0ccff5ccb484ea79b07449151811f.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-dui-mong__11__8cd0ccff5ccb484ea79b07449151811f_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Trắng gạo",
+          "imageUrl": "/assets/photos/collection-22-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-dui-mong__20__fc3f4e658c9849f8b658d68556efa499.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/ao-khoac-dui-mong__20__fc3f4e658c9849f8b658d68556efa499_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-23",
+      "name": "Quần short tweed cạp cao túi chéo",
+      "categoryId": 2,
+      "material": "Vải tweed",
+      "price": 479000,
+      "salePrice": 439000,
+      "description": "Quần short dáng chữ A với cạp cao và túi chéo tiện dụng. Bề mặt vải tweed họa tiết tạo điểm nhấn khi phối cùng áo len hoặc sơ mi.",
+      "source": "https://cardina.vn/products/quan-sooc-dang-a-cap-cao-tui-cheo",
+      "colors": [
+        {
+          "color": "Họa tiết nâu",
+          "imageUrl": "/assets/photos/collection-23-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-tweed__14__744f829f6b9549c4b289be717cccb62d.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-tweed__14__744f829f6b9549c4b289be717cccb62d_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Họa tiết rêu",
+          "imageUrl": "/assets/photos/collection-23-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-tweed__3__502983f0ff32484a8882be32649fce21.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-tweed__3__502983f0ff32484a8882be32649fce21_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    },
+    {
+      "sampleKey": "FRM-A26-24",
+      "name": "Chân váy linen chấm bi phối ren",
+      "categoryId": 3,
+      "material": "Vải linen phối ren",
+      "price": 629000,
+      "salePrice": 579000,
+      "description": "Chân váy dáng xòe chia tầng với họa tiết chấm bi và chi tiết ren. Có thể kết hợp cùng áo kiểu đơn giản cho những buổi dạo phố hoặc gặp gỡ cuối tuần.",
+      "source": "https://cardina.vn/products/chan-vay-xoe-chia-tang-phoi-ren",
+      "colors": [
+        {
+          "color": "Navy",
+          "imageUrl": "/assets/photos/collection-24-color-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-linen-cham-bi__5__cd66d3e8ccc04abeb91c4984c11b88b6.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-linen-cham-bi__5__cd66d3e8ccc04abeb91c4984c11b88b6_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "color": "Be kaki",
+          "imageUrl": "/assets/photos/collection-24-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-linen-cham-bi__10__43644eabad54480b8e3c473d0c6deedc.jpg",
+          "downloadUrl": "https://cdn.hstatic.net/products/200000503583/chan-vay-linen-cham-bi__10__43644eabad54480b8e3c473d0c6deedc_grande.jpg",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ]
+    }
+  ]
+}
