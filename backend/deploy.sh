@@ -46,14 +46,26 @@ if len(values['JWT_SECRET'].encode()) < 32 or values['JWT_SECRET'].startswith('l
 PY
 
 if docker info >/dev/null 2>&1; then
-  docker_cmd=(docker)
+  use_sudo=false
 elif sudo -n docker info >/dev/null 2>&1; then
-  docker_cmd=(sudo -n docker)
+  use_sudo=true
 else
   echo 'Cannot access Docker. Start Docker and grant access or passwordless sudo for deployment.' >&2
   exit 1
 fi
-compose_version="$("${docker_cmd[@]}" compose version --short)"
+# sudo sanitizes exported variables. Pass only the deployment image explicitly;
+# read it at each invocation so rollback also uses the previous image correctly.
+docker_run() {
+  if [[ "$use_sudo" == true ]]; then
+    sudo -n env "FORME_IMAGE=$FORME_IMAGE" docker "$@"
+  else
+    docker "$@"
+  fi
+}
+if ! compose_version="$(docker_run compose version --short 2>/dev/null)"; then
+  echo 'Docker Compose plugin is missing or unavailable. On Ubuntu run: sudo apt-get install -y docker-compose-v2' >&2
+  exit 1
+fi
 python3 - "$compose_version" <<'PY'
 import re, sys
 version = re.search(r'(\d+)\.(\d+)', sys.argv[1])
@@ -63,11 +75,13 @@ PY
 
 # /dev/null prevents Compose from interpolating secrets in its automatic .env.
 # The container reads backend/.env through env_file format: raw instead.
-compose=("${docker_cmd[@]}" compose --env-file /dev/null -p forme -f docker-compose.yml)
-"${compose[@]}" config --quiet
+compose() {
+  docker_run compose --env-file /dev/null -p forme -f docker-compose.yml "$@"
+}
+compose config --quiet
 "$aws_cli" ecr get-login-password --region "$AWS_REGION" \
-  | "${docker_cmd[@]}" login --username AWS --password-stdin "$registry"
-"${compose[@]}" pull backend
+  | docker_run login --username AWS --password-stdin "$registry"
+compose pull backend
 
 mkdir -p uploads/product-images
 if [[ "$(stat -c '%u:%g' uploads/product-images)" != '10001:10001' ]]; then
@@ -76,14 +90,14 @@ if [[ "$(stat -c '%u:%g' uploads/product-images)" != '10001:10001' ]]; then
 fi
 
 previous=''
-container_id="$("${compose[@]}" ps -aq backend)"
+container_id="$(compose ps -aq backend)"
 if [[ -n "$container_id" ]]; then
-  previous="$("${docker_cmd[@]}" inspect --format '{{.Config.Image}}' "$container_id")"
+  previous="$(docker_run inspect --format '{{.Config.Image}}' "$container_id")"
 fi
 if [[ -n "$previous" ]]; then printf '%s\n' "$previous" > .deploy/previous-image; fi
 
 echo "Deploying $FORME_IMAGE on port 8081..."
-if "${compose[@]}" up -d --no-build --pull never --force-recreate --wait --wait-timeout 240 backend; then
+if compose up -d --no-build --pull never --force-recreate --wait --wait-timeout 240 backend; then
   printf '%s\n' "$FORME_IMAGE" > .deploy/current-image
   echo 'Deployment healthy. Swagger: http://56.10.115.197:8081/swagger-ui.html'
 else
@@ -91,14 +105,14 @@ else
   if [[ -n "$previous" ]]; then
     echo "Restoring $previous..." >&2
     export FORME_IMAGE="$previous"
-    if "${compose[@]}" up -d --no-build --pull never --force-recreate --wait --wait-timeout 240 backend; then
+    if compose up -d --no-build --pull never --force-recreate --wait --wait-timeout 240 backend; then
       printf '%s\n' "$previous" > .deploy/current-image
       echo 'Previous image restored. Database migrations are not rolled back.' >&2
     else
       echo 'Rollback also failed; inspect the backend container logs.' >&2
     fi
   else
-    "${compose[@]}" stop backend || true
+    compose stop backend || true
     echo 'First deployment failed; no previous image exists. Failed container retained for logs.' >&2
   fi
   exit 1
