@@ -1,0 +1,69 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  port: ${SERVER_PORT:8080}
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      username: ${REDIS_USERNAME:}
+      password: ${REDIS_PASSWORD:}
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED:${REDIS_SSL:false}}
+      connect-timeout: 3s
+      timeout: 3s
+      repositories:
+        enabled: false
+  mail:
+    host: ${SMTP_HOST:}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${SMTP_AUTH:true}
+      mail.smtp.starttls.enable: ${SMTP_STARTTLS:true}
+      mail.smtp.starttls.required: ${SMTP_STARTTLS:true}
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+  application:
+    name: fashion-store-backend
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/fashion_store?useUnicode=true&characterEncoding=UTF-8&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true}
+    username: ${DB_USERNAME:fashion}
+    password: ${DB_PASSWORD:fashion}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+application:
+  images:
+    directory: ${PRODUCT_IMAGES_DIRECTORY:./uploads/product-images}
+  mail:
+    from: ${SMTP_FROM:}
+    brevo-api-key: ${BREVO_API_KEY:}
+    brevo-sender-email: ${BREVO_SENDER_EMAIL:}
+    blocked-domains: ${EMAIL_BLOCKED_DOMAINS:mailinator.com,guerrillamail.com,10minutemail.com,tempmail.com,yopmail.com,dispostable.com}
+  jwt:
+    secret: ${JWT_SECRET:local-development-secret-change-before-production-2026}
+    access-token-minutes: ${JWT_ACCESS_MINUTES:480}
+  ai:
+    base-url: ${AI_API_URL:}
+    api-key: ${AI_API_KEY:}
+    connect-timeout-seconds: ${AI_CONNECT_TIMEOUT_SECONDS:1}
+    read-timeout-seconds: ${AI_READ_TIMEOUT_SECONDS:2}
+  cors:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

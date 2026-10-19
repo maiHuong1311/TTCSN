@@ -1,0 +1,156 @@
+{
+  "retrieved": "2026-10-18",
+  "products": [
+    {
+      "productId": 1,
+      "name": "Áo kiểu cổ nhún buộc dây dài tay",
+      "source": "https://cardina.vn/products/ao-kieu-co-nhun-buoc-day-dai-tay",
+      "colors": [
+        {
+          "color": "Xanh Navy",
+          "imageUrl": "/assets/photos/product-1.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-tho-gio-co-nhun__7__446eeaca1a7f45f7a99aa41dbad62e4f.jpg"
+        },
+        {
+          "color": "Hồng đỗ",
+          "imageUrl": "/assets/photos/product-1-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-tho-gio-co-nhun__3__f457b74815284a7a855d5e9106a4aa18.jpg"
+        }
+      ]
+    },
+    {
+      "productId": 2,
+      "name": "Quần dạ công sở dáng suông",
+      "source": "https://cardina.vn/products/quan-cong-so-dang-suong-cap-cao",
+      "colors": [
+        {
+          "color": "Nâu tây",
+          "imageUrl": "/assets/photos/product-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-da-cong-so-dang-suong__13__49539a1ab41543a0a419b1fdb24f0c08.jpg"
+        },
+        {
+          "color": "Ghi đậm",
+          "imageUrl": "/assets/photos/product-2-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-da-cong-so-dang-suong__8__52cd96dc72ac49d09b29a7cfd9531588.jpg"
+        }
+      ]
+    },
+    {
+      "productId": 3,
+      "name": "Đầm sơ mi kẻ chun eo",
+      "source": "https://cardina.vn/products/dam-so-mi-chun-eo-la-co-khac-mau",
+      "colors": [
+        {
+          "color": "Nâu",
+          "imageUrl": "/assets/photos/product-3.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/dam-so-mi-tho-ke__4__8ebfc8ae9b9942318013252ea83082c0.jpg"
+        },
+        {
+          "color": "Be",
+          "imageUrl": "/assets/photos/product-3-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/dam-so-mi-tho-ke__8__6b821d56476d440fbf1cc570616f4581.jpg"
+        }
+      ]
+    },
+    {
+      "productId": 4,
+      "name": "Áo thun tăm dài tay cổ tròn",
+      "source": "https://cardina.vn/products/ao-dai-tay-co-tron-dinh-tag-nguc",
+      "colors": [
+        {
+          "color": "Trắng",
+          "imageUrl": "/assets/photos/product-4.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao0-thun-tam-dai-tay__5__d646d7c771fb4a30a4c0f60dda0d5acd.jpg"
+        },
+        {
+          "color": "Xanh Navy",
+          "imageUrl": "/assets/photos/product-4-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao0-thun-tam-dai-tay__3__49bcd6f5be5741f3888f5f69bb68bb37.jpg"
+        },
+        {
+          "color": "Be",
+          "imageUrl": "/assets/photos/product-4-color-3.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao0-thun-tam-dai-tay__10__1d75916e3b5948ff8951066a0786146e.jpg"
+        }
+      ]
+    },
+    {
+      "productId": 5,
+      "name": "Quần jeans ống suông cạp cao",
+      "source": "https://cardina.vn/products/quan-jean-ong-suong-cap-cao",
+      "colors": [
+        {
+          "color": "Xanh đậm",
+          "imageUrl": "/assets/photos/product-5.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-jean-ong-suong-cap-cap__6__78be04f63a894d0dbe91269562bbc65c.jpg"
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/product-5-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-jean-ong-suong-cap-cap__1__89dfdd1389714d979d8486983da50112.jpeg"
+        }
+      ]
+    },
+    {
+      "productId": 6,
+      "name": "Balo cuộn miệng 20L",
+      "source": "https://www.stubbleandco.com/products/the-roll-top-20l",
+      "colors": [
+        {
+          "color": "Xanh navy",
+          "imageUrl": "/assets/photos/product-6.png",
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/1336/4551/files/roll-top-20l-midnight-studio-transparent-png-thumbnail.png?v=1773931870&width=1000&format=jpg"
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/product-6-color-2.png",
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/1336/4551/files/roll-top-20l-black-studio-transparent-png-thumbnail.png?v=1773931866&width=1000&format=jpg"
+        },
+        {
+          "color": "Xanh rêu",
+          "imageUrl": "/assets/photos/product-6-color-3.png",
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/1336/4551/files/roll-top-20l-green-studio-transparent-png-thumbnail.png?v=1773931869&width=1000&format=jpg"
+        }
+      ]
+    },
+    {
+      "productId": 7,
+      "name": "Áo nỉ cổ cao tay bồng",
+      "source": "https://cardina.vn/products/ao-dai-tay-co-leo-vai-bong-dinh-tag",
+      "colors": [
+        {
+          "color": "Kem",
+          "imageUrl": "/assets/photos/product-7.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-ni-dai-co-leo__12__cc1a51c209c846308ea1187e0a32ffae.jpg"
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/product-7-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-ni-dai-co-leo__15__a4c33f17f4d24868898a0ffb6c8eb53e.jpg"
+        },
+        {
+          "color": "Đỏ đô",
+          "imageUrl": "/assets/photos/product-7-color-3.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/ao-ni-dai-co-leo__7__316fe196b3a04536815e89d3151770c7.jpg"
+        }
+      ]
+    },
+    {
+      "productId": 8,
+      "name": "Quần short dạ dáng chữ A",
+      "source": "https://cardina.vn/products/quan-sooc-dang-a-cap-lien-dinh-tag",
+      "colors": [
+        {
+          "color": "Nâu tây",
+          "imageUrl": "/assets/photos/product-8.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-dang-a__9__4b363697abce43b298b6569c33cc3d9a.jpg"
+        },
+        {
+          "color": "Đen",
+          "imageUrl": "/assets/photos/product-8-color-2.jpg",
+          "sourceUrl": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-dang-a__6__6fbecfe411954b009983c15e8c6d8d70.jpg"
+        }
+      ]
+    }
+  ]
+}

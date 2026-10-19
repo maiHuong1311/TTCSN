@@ -1,0 +1,130 @@
+-- Ten additional local sample products. Auto-generated IDs preserve custom/admin catalog entries.
+-- Prices and stock below are demo values, not copied from the photo source.
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (1,'Áo polo nữ tay chờm phối viền','Thiết kế cổ polo phối viền và tay chờm gọn gàng, dễ kết hợp với quần suông hoặc chân váy. Phù hợp mặc đi làm, đi học và dạo phố.','FORME','Vải thun','Female',329000,299000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-9-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Hồng tây',15,'FRM-A26-9-C1-S','/assets/photos/collection-9-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Hồng tây',15,'FRM-A26-9-C1-M','/assets/photos/collection-9-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Hồng tây',15,'FRM-A26-9-C1-L','/assets/photos/collection-9-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Hồng tây',15,'FRM-A26-9-C1-XL','/assets/photos/collection-9-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-9-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Hồng đất',15,'FRM-A26-9-C2-S','/assets/photos/collection-9-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Hồng đất',15,'FRM-A26-9-C2-M','/assets/photos/collection-9-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Hồng đất',15,'FRM-A26-9-C2-L','/assets/photos/collection-9-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Hồng đất',15,'FRM-A26-9-C2-XL','/assets/photos/collection-9-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (1,'Áo ren cổ cao dài tay','Áo dài tay cổ cao với bề mặt ren tạo điểm nhấn nhẹ nhàng. Có thể phối cùng áo khoác và quần cạp cao cho những ngày trời mát.','FORME','Vải ren co giãn','Female',349000,NULL,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-10-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Trắng',15,'FRM-A26-10-C1-S','/assets/photos/collection-10-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Trắng',15,'FRM-A26-10-C1-M','/assets/photos/collection-10-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Trắng',15,'FRM-A26-10-C1-L','/assets/photos/collection-10-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Trắng',15,'FRM-A26-10-C1-XL','/assets/photos/collection-10-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-10-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Đen',15,'FRM-A26-10-C2-S','/assets/photos/collection-10-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đen',15,'FRM-A26-10-C2-M','/assets/photos/collection-10-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đen',15,'FRM-A26-10-C2-L','/assets/photos/collection-10-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đen',15,'FRM-A26-10-C2-XL','/assets/photos/collection-10-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (1,'Áo khoác gió nữ dáng ngắn','Áo khoác dáng ngắn với gấu rút tạo phom linh hoạt. Thích hợp khoác ngoài áo thun khi đi dạo hoặc di chuyển hằng ngày.','FORME','Vải gió','Female',599000,549000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-11-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Trắng',15,'FRM-A26-11-C1-S','/assets/photos/collection-11-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Trắng',15,'FRM-A26-11-C1-M','/assets/photos/collection-11-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Trắng',15,'FRM-A26-11-C1-L','/assets/photos/collection-11-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Trắng',15,'FRM-A26-11-C1-XL','/assets/photos/collection-11-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-11-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Xanh mint',15,'FRM-A26-11-C2-S','/assets/photos/collection-11-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Xanh mint',15,'FRM-A26-11-C2-M','/assets/photos/collection-11-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Xanh mint',15,'FRM-A26-11-C2-L','/assets/photos/collection-11-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Xanh mint',15,'FRM-A26-11-C2-XL','/assets/photos/collection-11-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (1,'Áo len sọc phối cổ sơ mi','Áo len sọc dài tay kết hợp cổ sơ mi tạo vẻ chỉn chu. Dáng vai chờm dễ phối với quần dài và chân váy cho trang phục công sở.','FORME','Vải len dệt','Female',549000,NULL,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-12-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Đen',15,'FRM-A26-12-C1-S','/assets/photos/collection-12-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đen',15,'FRM-A26-12-C1-M','/assets/photos/collection-12-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đen',15,'FRM-A26-12-C1-L','/assets/photos/collection-12-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đen',15,'FRM-A26-12-C1-XL','/assets/photos/collection-12-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-12-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Ghi mi lăng',15,'FRM-A26-12-C2-S','/assets/photos/collection-12-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Ghi mi lăng',15,'FRM-A26-12-C2-M','/assets/photos/collection-12-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Ghi mi lăng',15,'FRM-A26-12-C2-L','/assets/photos/collection-12-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Ghi mi lăng',15,'FRM-A26-12-C2-XL','/assets/photos/collection-12-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (2,'Quần nỉ suông cạp chun dây rút','Quần dáng suông với cạp chun và dây rút thuận tiện điều chỉnh. Phối cùng áo thun hoặc áo nỉ để có một bộ trang phục thoải mái.','FORME','Vải nỉ','Female',459000,419000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-13-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Nâu tây',15,'FRM-A26-13-C1-S','/assets/photos/collection-13-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Nâu tây',15,'FRM-A26-13-C1-M','/assets/photos/collection-13-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Nâu tây',15,'FRM-A26-13-C1-L','/assets/photos/collection-13-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Nâu tây',15,'FRM-A26-13-C1-XL','/assets/photos/collection-13-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-13-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Đen',15,'FRM-A26-13-C2-S','/assets/photos/collection-13-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đen',15,'FRM-A26-13-C2-M','/assets/photos/collection-13-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đen',15,'FRM-A26-13-C2-L','/assets/photos/collection-13-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đen',15,'FRM-A26-13-C2-XL','/assets/photos/collection-13-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (2,'Quần kaki suông cạp cao','Thiết kế cạp cao, ống suông và đường diễu phía trước tạo phom gọn gàng. Dễ kết hợp cùng sơ mi hoặc áo polo khi đi làm.','FORME','Vải kaki','Female',529000,NULL,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-14-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Nâu lạnh',15,'FRM-A26-14-C1-S','/assets/photos/collection-14-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Nâu lạnh',15,'FRM-A26-14-C1-M','/assets/photos/collection-14-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Nâu lạnh',15,'FRM-A26-14-C1-L','/assets/photos/collection-14-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Nâu lạnh',15,'FRM-A26-14-C1-XL','/assets/photos/collection-14-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-14-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Trắng gạo',15,'FRM-A26-14-C2-S','/assets/photos/collection-14-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Trắng gạo',15,'FRM-A26-14-C2-M','/assets/photos/collection-14-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Trắng gạo',15,'FRM-A26-14-C2-L','/assets/photos/collection-14-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Trắng gạo',15,'FRM-A26-14-C2-XL','/assets/photos/collection-14-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (2,'Quần culottes lửng dáng suông','Quần lửng ống rộng giúp trang phục trông nhẹ nhàng, thanh lịch. Kết hợp với áo kiểu hoặc áo thun và giày bệt cho những buổi dạo phố.','FORME','Vải dệt','Female',479000,439000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-15-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Đen',15,'FRM-A26-15-C1-S','/assets/photos/collection-15-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đen',15,'FRM-A26-15-C1-M','/assets/photos/collection-15-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đen',15,'FRM-A26-15-C1-L','/assets/photos/collection-15-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đen',15,'FRM-A26-15-C1-XL','/assets/photos/collection-15-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-15-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Nâu tây',15,'FRM-A26-15-C2-S','/assets/photos/collection-15-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Nâu tây',15,'FRM-A26-15-C2-M','/assets/photos/collection-15-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Nâu tây',15,'FRM-A26-15-C2-L','/assets/photos/collection-15-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Nâu tây',15,'FRM-A26-15-C2-XL','/assets/photos/collection-15-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (3,'Đầm gấm hoa dáng suông','Đầm dáng suông với họa tiết hoa nổi bật, phù hợp dự tiệc hoặc gặp gỡ cuối tuần. Phối phụ kiện tối giản để làm nổi bật trang phục.','FORME','Vải gấm','Female',890000,790000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-16-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Xanh lục bảo',15,'FRM-A26-16-C1-M','/assets/photos/collection-16-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Xanh lục bảo',15,'FRM-A26-16-C1-L','/assets/photos/collection-16-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Xanh lục bảo',15,'FRM-A26-16-C1-XL','/assets/photos/collection-16-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-16-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đỏ đô',15,'FRM-A26-16-C2-M','/assets/photos/collection-16-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đỏ đô',15,'FRM-A26-16-C2-L','/assets/photos/collection-16-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đỏ đô',15,'FRM-A26-16-C2-XL','/assets/photos/collection-16-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (3,'Chân váy denim xòe xếp ly','Chân váy denim dáng xòe với chi tiết xếp ly hai bên. Có thể phối cùng áo thun, polo hoặc sơ mi cho phong cách trẻ trung.','FORME','Vải denim','Female',559000,NULL,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-17-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Đen',15,'FRM-A26-17-C1-S','/assets/photos/collection-17-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Đen',15,'FRM-A26-17-C1-M','/assets/photos/collection-17-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Đen',15,'FRM-A26-17-C1-L','/assets/photos/collection-17-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Đen',15,'FRM-A26-17-C1-XL','/assets/photos/collection-17-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-17-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Xanh than',15,'FRM-A26-17-C2-S','/assets/photos/collection-17-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Xanh than',15,'FRM-A26-17-C2-M','/assets/photos/collection-17-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Xanh than',15,'FRM-A26-17-C2-L','/assets/photos/collection-17-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Xanh than',15,'FRM-A26-17-C2-XL','/assets/photos/collection-17-color-2.jpg');
+
+INSERT INTO product(category_id,product_name,description,brand,material,gender,price,sale_price,status,created_at,updated_at) VALUES (3,'Đầm cổ tròn gân dọc phối ren','Đầm cổ tròn với đường gân dọc và chi tiết ren làm điểm nhấn. Dáng váy thanh lịch phù hợp đi làm, dạo phố hoặc gặp gỡ bạn bè.','FORME','Vải dệt gân phối ren','Female',749000,699000,'Active','2026-10-18 00:00:00','2026-10-18 00:00:00');
+SET @new_product_id = LAST_INSERT_ID();
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-18-color-1.jpg',TRUE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Trắng',15,'FRM-A26-18-C1-XL','/assets/photos/collection-18-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Trắng',15,'FRM-A26-18-C1-S','/assets/photos/collection-18-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Trắng',15,'FRM-A26-18-C1-M','/assets/photos/collection-18-color-1.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Trắng',15,'FRM-A26-18-C1-L','/assets/photos/collection-18-color-1.jpg');
+INSERT INTO product_image(product_id,image_url,is_primary) VALUES (@new_product_id,'/assets/photos/collection-18-color-2.jpg',FALSE);
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'XL','Be nâu',15,'FRM-A26-18-C2-XL','/assets/photos/collection-18-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'S','Be nâu',15,'FRM-A26-18-C2-S','/assets/photos/collection-18-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'M','Be nâu',15,'FRM-A26-18-C2-M','/assets/photos/collection-18-color-2.jpg');
+INSERT INTO product_variant(product_id,size,color,stock_quantity,sku,image_url) VALUES (@new_product_id,'L','Be nâu',15,'FRM-A26-18-C2-L','/assets/photos/collection-18-color-2.jpg');
