@@ -1,3 +1,5 @@
+import { couponKeys } from '../hooks/useCoupons';
+import { AvailableCoupons } from '../components/catalog/AvailableCoupons';
 import { display } from '../lib/labels';
 import { useState } from 'react';
 import { productImageUrl } from '../lib/images';
@@ -30,6 +32,7 @@ export function CheckoutPage() {
   const order = useMutation({
     mutationFn: (r: CheckoutRequest) => createOrder(r),
     onSuccess: (r) => {
+      qc.invalidateQueries({ queryKey: couponKeys.all });
       qc.invalidateQueries({ queryKey: shopKeys.all });
       navigate('/orders/' + r.orderId);
     },
@@ -173,7 +176,7 @@ export function CheckoutPage() {
           <div className="coupon-field">
             <input
               aria-label="Mã giảm giá"
-              placeholder="Nhập mã giảm giá, ví dụ WELCOME10"
+              placeholder="Nhập mã giảm giá"
               value={couponDraft}
               onChange={(e) => setCouponDraft(e.target.value)}
             />
@@ -197,6 +200,11 @@ export function CheckoutPage() {
               Xóa {coupon} ×
             </button>
           )}
+          <AvailableCoupons
+            subtotal={cart.data.subtotal}
+            selectedCode={quote.isSuccess && !quote.isFetching ? coupon : undefined}
+            onApply={(code) => { setCouponDraft(code); setCoupon(code); }}
+          />
           <ErrorMessage error={quote.error} />
           {quote.data && (
             <>

@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { HomePage } from './HomePage';
 import { useAuthStore } from '../stores/authStore';
+vi.mock('../components/catalog/AvailableCoupons', () => ({ AvailableCoupons: () => <div>Mã giảm giá hiện có</div> }));
 it('shows a public photographic lookbook and color previews without requesting protected catalog APIs', async () => {
   useAuthStore.setState({ token: null, user: null });
   const fetch = vi.spyOn(globalThis, 'fetch');
