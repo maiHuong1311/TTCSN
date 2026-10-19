@@ -51,7 +51,7 @@ public class SecurityConfig {
                         "/api/health"
                     )
                     .permitAll()
-                    .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/images/*")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/images/*", "/api/coupons")
                     .permitAll()
                     .requestMatchers(org.springframework.http.HttpMethod.GET,
                         "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**")

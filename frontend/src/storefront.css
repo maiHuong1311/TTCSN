@@ -2235,3 +2235,13 @@ th {
   padding-top: 20px;
   border-top: 1px solid #e5e7eb;
 }
+
+.available-coupons { margin: 24px 0; scroll-margin-top: 150px; }
+#ma-giam-gia { scroll-margin-top: 150px; }
+.available-coupon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+.available-coupon { padding: 20px; border: 1px dashed #bd0000; background: #fffafa; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.available-coupon strong { color: #b00000; overflow-wrap: anywhere; }
+.available-coupon p { margin: 0; }
+.available-coupon small { color: #666; }
+.available-coupon button { align-self: flex-start; margin-top: auto; white-space: normal; overflow-wrap: anywhere; }
+.available-coupon button:disabled { opacity: .55; cursor: not-allowed; }
