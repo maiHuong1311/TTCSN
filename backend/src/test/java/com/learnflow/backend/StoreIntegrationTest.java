@@ -276,6 +276,40 @@ class StoreIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
+    void customerCanUseEachCouponOnlyOnceEvenAfterCancellation() throws Exception {
+        postJson("/api/carts/current/items", Map.of("variantId", 1, "quantity", 2), token, 200);
+        // A quote only previews the discount; it must not consume the customer's use.
+        postJson("/api/orders/quote", Map.of("couponCode", "WELCOME10"), token, 200);
+        postJson("/api/orders/quote", Map.of("couponCode", " welcome10 "), token, 200);
+        long addressId = address();
+        JsonNode first = postJson("/api/orders", Map.of("addressId", addressId,
+            "paymentMethod", "COD", "couponCode", "WELCOME10"), token, 200);
+        mvc.perform(get("/api/coupons").header("Authorization", "Bearer " + token))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[?(@.couponCode == 'WELCOME10')]").isEmpty());
+        postJson("/api/carts/current/items", Map.of("variantId", 1, "quantity", 2), token, 200);
+        JsonNode failure = postJson("/api/orders/quote", Map.of("couponCode", " welcome10 "), token, 400);
+        assertTrue(failure.get("detail").asText().contains("Bạn đã sử dụng mã giảm giá này"));
+        postJson("/api/orders", Map.of("addressId", addressId, "paymentMethod", "COD",
+            "couponCode", "WELCOME10"), token, 400);
+        postJson("/api/orders/" + first.get("orderId").asLong() + "/cancel", Map.of(), token, 200);
+        postJson("/api/orders/quote", Map.of("couponCode", "WELCOME10"), token, 400);
+        postJson("/api/orders", Map.of("addressId", addressId, "paymentMethod", "COD",
+            "couponCode", "WELCOME10"), token, 400);
+        mvc.perform(get("/api/carts/current").header("Authorization", "Bearer " + token))
+            .andExpect(jsonPath("$.items.length()").value(1));
+        // Usage by one customer must not prevent another customer's first use.
+        token = register("coupon" + UUID.randomUUID().toString().replace("-", "").substring(0, 12));
+        mvc.perform(get("/api/coupons").header("Authorization", "Bearer " + token))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[?(@.couponCode == 'WELCOME10')]").isNotEmpty());
+        order("COD", "WELCOME10");
+        mvc.perform(get("/api/coupons"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[?(@.couponCode == 'WELCOME10')]").isNotEmpty());
+    }
+
+    @Test
     void checkoutUsesServerPricesAndCancellationRestoresStock() throws Exception {
         int before = json(
             mvc

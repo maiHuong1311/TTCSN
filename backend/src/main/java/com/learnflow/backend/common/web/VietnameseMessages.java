@@ -46,6 +46,7 @@ public final class VietnameseMessages {
         Map.entry("Coupon not found", "Không tìm thấy mã giảm giá."),
         Map.entry("Coupon is not active", "Mã giảm giá chưa có hiệu lực hoặc đã hết hạn."),
         Map.entry("Coupon usage limit reached", "Mã giảm giá đã hết lượt sử dụng."),
+        Map.entry("Coupon already used by customer", "Bạn đã sử dụng mã giảm giá này. Mỗi khách hàng chỉ được dùng mỗi mã một lần."),
         Map.entry(
             "Order does not meet coupon minimum",
             "Đơn hàng chưa đạt giá trị tối thiểu để áp dụng mã giảm giá."
