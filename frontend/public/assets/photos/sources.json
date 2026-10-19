@@ -1,0 +1,59 @@
+{
+  "retrieved": "2026-10-18",
+  "reference": "https://cardina.vn/",
+  "images": [
+    {
+      "file": "reference-banner.jpg",
+      "url": "https://cdn.hstatic.net/files/200000503583/file/khuyen-mai-20-10_b37fa6dd4d46408d8754bebd681b2c5e.jpg"
+    },
+    {
+      "file": "reference-knitwear.jpg",
+      "url": "https://cdn.hstatic.net/files/200000503583/file/2000x840_b43e9106d7f24ce085eca1ff979970a0.jpg"
+    },
+    {
+      "file": "product-1.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/ao-tho-gio-co-nhun__1__0bf1967bb0e34f7685eef23b696acc5e_master.jpg"
+    },
+    {
+      "file": "product-2.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/quan-da-cong-so-dang-suong__13__49539a1ab41543a0a419b1fdb24f0c08.jpg",
+      "alt": "Quần dạ công sở dáng suông cạp cao"
+    },
+    {
+      "file": "product-3.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/dam-so-mi-tay-cai__1__da8dbd74327d405b8f3b1582e89e0f70_master.jpg"
+    },
+    {
+      "file": "product-4.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/ao0-thun-tam-dai-tay__5__d646d7c771fb4a30a4c0f60dda0d5acd.jpg",
+      "alt": "Áo thun tăm dài tay cổ tròn đính tag ngực"
+    },
+    {
+      "file": "product-5.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/quan-jean-mai-xuoc-ly-goi__2__5fabf38f4b8c4a47a229e2101672ba7b_master.jpg"
+    },
+    {
+      "file": "product-6.jpg",
+      "url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85",
+      "alt": "Balo thời trang"
+    },
+    {
+      "file": "product-7.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/ao-ni-dai-co-leo__12__cc1a51c209c846308ea1187e0a32ffae.jpg",
+      "alt": "Áo nỉ dài tay cổ leo vai bồng đính tag"
+    },
+    {
+      "file": "product-8.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/quan-sooc-da-dang-a__9__4b363697abce43b298b6569c33cc3d9a.jpg",
+      "alt": "Quần sooc dạ dáng A cạp liền đính tag"
+    },
+    {
+      "file": "category-set.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/do-bo__1__2b4a701fdde643cebd9eacd910445eb6_master.jpg"
+    },
+    {
+      "file": "category-knit.jpg",
+      "url": "https://cdn.hstatic.net/products/200000503583/ao-thun-det-hoa-tiet__2__120e8c068b5347aea52958da12667e99_master.jpg"
+    }
+  ]
+}

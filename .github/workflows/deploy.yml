@@ -1,0 +1,135 @@
+name: Deploy FORME backend to EC2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: forme-backend-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  AWS_REGION: ap-southeast-1
+  ECR_REGISTRY: 331545064056.dkr.ecr.ap-southeast-1.amazonaws.com
+
+jobs:
+  test:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: ci-root-only
+          MYSQL_DATABASE: fashion_store_test
+          MYSQL_USER: fashion_test
+          MYSQL_PASSWORD: ci-test-only
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=10s --health-timeout=5s --health-retries=15
+      redis:
+        image: redis:7.4-alpine
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s --health-timeout=3s --health-retries=15
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+      - name: Verify against isolated MySQL and Redis
+        working-directory: backend
+        env:
+          RUN_REDIS_INTEGRATION: 'true'
+        run: |
+          chmod +x mvnw
+          ./mvnw -B -ntp -Ddebug=false \
+            '-Dspring.datasource.url=jdbc:mysql://127.0.0.1:3306/fashion_store_test' \
+            -Dspring.datasource.username=fashion_test \
+            -Dspring.datasource.password=ci-test-only \
+            -Dspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver verify
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+      - name: Build JAR
+        working-directory: backend
+        run: |
+          chmod +x mvnw
+          ./mvnw -B -ntp package -DskipTests
+      - name: Authenticate AWS with OIDC
+        if: env.AWS_ROLE_ARN != ''
+        uses: aws-actions/configure-aws-credentials@557591d3fb8057929645fd3c7147240c3ec8e690
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Authenticate AWS with existing access-key secrets
+        if: env.AWS_ROLE_ARN == ''
+        uses: aws-actions/configure-aws-credentials@557591d3fb8057929645fd3c7147240c3ec8e690
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Build and push immutable deployment image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          aws ecr get-login-password --region "$AWS_REGION" \
+            | docker login --username AWS --password-stdin "$ECR_REGISTRY"
+          docker build --platform linux/amd64 -f backend/Dockerfile \
+            -t "$ECR_REGISTRY/forme-backend:$IMAGE_TAG" backend
+          docker push "$ECR_REGISTRY/forme-backend:$IMAGE_TAG"
+      - name: Prepare deployment files (never transfer .env)
+        run: |
+          echo "COMPOSE_B64=$(base64 -w0 backend/docker-compose.yml)" >> "$GITHUB_ENV"
+          echo "DEPLOY_B64=$(base64 -w0 backend/deploy.sh)" >> "$GITHUB_ENV"
+      - name: Transfer configuration and deploy over SSH
+        uses: appleboy/ssh-action@c4f70287fc37c43b14b30b407224bbbc8e8c6327
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME || 'ubuntu' }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          fingerprint: ${{ secrets.EC2_HOST_FINGERPRINT }}
+          command_timeout: 15m
+          envs: IMAGE_TAG,COMPOSE_B64,DEPLOY_B64,AWS_REGION
+          script: |
+            set -eu
+            umask 077
+            cd "$HOME/ttcsn/TTCSN/backend"
+            test -f .env || { echo 'Missing backend/.env on EC2'; exit 1; }
+            printf '%s' "$COMPOSE_B64" | base64 -d > docker-compose.yml.tmp
+            printf '%s' "$DEPLOY_B64" | base64 -d > deploy.sh.tmp
+            mv docker-compose.yml.tmp docker-compose.yml
+            mv deploy.sh.tmp deploy.sh
+            chmod 700 deploy.sh
+            bash deploy.sh "$IMAGE_TAG"

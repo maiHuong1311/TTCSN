@@ -1,0 +1,14 @@
+ALTER TABLE app_user ADD CONSTRAINT chk_user_role CHECK (role IN ('Customer','Admin'));
+ALTER TABLE app_user ADD CONSTRAINT chk_user_status CHECK (status IN ('Active','Blocked'));
+ALTER TABLE product ADD CONSTRAINT chk_product_gender CHECK (gender IN ('Male','Female','Unisex'));
+ALTER TABLE product ADD CONSTRAINT chk_product_status CHECK (status IN ('Active','Inactive'));
+ALTER TABLE shop_order ADD CONSTRAINT chk_order_status CHECK (order_status IN ('Pending','Confirmed','Shipping','Delivered','Cancelled'));
+ALTER TABLE shop_order ADD CONSTRAINT chk_order_amounts CHECK (total_amount >= 0 AND shipping_fee >= 0 AND discount_amount >= 0);
+ALTER TABLE order_item ADD CONSTRAINT chk_order_item_values CHECK (quantity > 0 AND unit_price >= 0);
+ALTER TABLE payment ADD CONSTRAINT chk_payment_method CHECK (payment_method IN ('COD','VietQR','EWallet'));
+ALTER TABLE payment ADD CONSTRAINT chk_payment_status CHECK (payment_status IN ('Pending','Paid','Failed','Refunded'));
+ALTER TABLE payment ADD CONSTRAINT chk_payment_amount CHECK (amount >= 0);
+ALTER TABLE coupon ADD CONSTRAINT chk_coupon_type CHECK (discount_type IN ('Percentage','Fixed'));
+ALTER TABLE coupon ADD CONSTRAINT chk_coupon_percentage CHECK (discount_type <> 'Percentage' OR discount_value <= 100);
+ALTER TABLE coupon ADD CONSTRAINT chk_coupon_dates CHECK (end_date > start_date);
+ALTER TABLE coupon ADD CONSTRAINT chk_coupon_minimum CHECK (min_order_value >= 0);

@@ -1,0 +1,27 @@
+
+ALTER TABLE app_user ADD username VARCHAR(50) UNIQUE;
+ALTER TABLE app_user ADD phone_number VARCHAR(15);
+ALTER TABLE app_user ADD status VARCHAR(20) NOT NULL DEFAULT 'Active';
+ALTER TABLE app_user ADD height_cm DECIMAL(5,2);
+ALTER TABLE app_user ADD weight_kg DECIMAL(5,2);
+ALTER TABLE app_user ADD preferred_style VARCHAR(100);
+UPDATE app_user SET username=CONCAT('user',id);
+ALTER TABLE app_user MODIFY username VARCHAR(50) NOT NULL;
+UPDATE app_user SET role='Customer' WHERE role='USER';
+UPDATE app_user SET role='Admin' WHERE role='ADMIN';
+CREATE TABLE address (address_id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL,receiver_name VARCHAR(100) NOT NULL,phone_number VARCHAR(15) NOT NULL,province VARCHAR(100) NOT NULL,detail_address VARCHAR(255) NOT NULL,is_default BOOLEAN NOT NULL DEFAULT FALSE,FOREIGN KEY(user_id) REFERENCES app_user(id));
+CREATE TABLE category (category_id BIGINT AUTO_INCREMENT PRIMARY KEY,category_name VARCHAR(100) NOT NULL,parent_id BIGINT,description TEXT,FOREIGN KEY(parent_id) REFERENCES category(category_id));
+CREATE TABLE product (product_id BIGINT AUTO_INCREMENT PRIMARY KEY,category_id BIGINT NOT NULL,product_name VARCHAR(255) NOT NULL,description TEXT,brand VARCHAR(100),material VARCHAR(100),gender VARCHAR(20) NOT NULL,price DECIMAL(12,2) NOT NULL,sale_price DECIMAL(12,2),status VARCHAR(20) NOT NULL,created_at TIMESTAMP(6) NOT NULL,updated_at TIMESTAMP(6) NOT NULL,FOREIGN KEY(category_id) REFERENCES category(category_id),CHECK(price>=0),CHECK(sale_price IS NULL OR (sale_price>=0 AND sale_price<=price)));
+CREATE TABLE product_variant (variant_id BIGINT AUTO_INCREMENT PRIMARY KEY,product_id BIGINT NOT NULL,size VARCHAR(10) NOT NULL,color VARCHAR(50) NOT NULL,stock_quantity INT NOT NULL,sku VARCHAR(100) NOT NULL UNIQUE,FOREIGN KEY(product_id) REFERENCES product(product_id),CHECK(stock_quantity>=0),UNIQUE(product_id,size,color));
+CREATE TABLE product_image (image_id BIGINT AUTO_INCREMENT PRIMARY KEY,product_id BIGINT NOT NULL,image_url VARCHAR(500) NOT NULL,is_primary BOOLEAN NOT NULL,FOREIGN KEY(product_id) REFERENCES product(product_id));
+CREATE TABLE cart (cart_id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL UNIQUE,created_at TIMESTAMP(6) NOT NULL,FOREIGN KEY(user_id) REFERENCES app_user(id));
+CREATE TABLE cart_item (cart_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,cart_id BIGINT NOT NULL,variant_id BIGINT NOT NULL,quantity INT NOT NULL,FOREIGN KEY(cart_id) REFERENCES cart(cart_id),FOREIGN KEY(variant_id) REFERENCES product_variant(variant_id),UNIQUE(cart_id,variant_id),CHECK(quantity>0));
+CREATE TABLE coupon (coupon_id BIGINT AUTO_INCREMENT PRIMARY KEY,coupon_code VARCHAR(50) NOT NULL UNIQUE,discount_type VARCHAR(20) NOT NULL,discount_value DECIMAL(12,2) NOT NULL,min_order_value DECIMAL(12,2) NOT NULL,usage_limit INT NOT NULL,start_date TIMESTAMP(6) NOT NULL,end_date TIMESTAMP(6) NOT NULL,CHECK(discount_value>0),CHECK(usage_limit>=0));
+CREATE TABLE shop_order (order_id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL,receiver_name VARCHAR(100) NOT NULL,receiver_phone VARCHAR(15) NOT NULL,shipping_address VARCHAR(500) NOT NULL,total_amount DECIMAL(12,2) NOT NULL,shipping_fee DECIMAL(12,2) NOT NULL,discount_amount DECIMAL(12,2) NOT NULL,order_status VARCHAR(20) NOT NULL,note TEXT,created_at TIMESTAMP(6) NOT NULL,coupon_id BIGINT,FOREIGN KEY(user_id) REFERENCES app_user(id),FOREIGN KEY(coupon_id) REFERENCES coupon(coupon_id));
+CREATE TABLE order_item (order_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,order_id BIGINT NOT NULL,variant_id BIGINT NOT NULL,quantity INT NOT NULL,unit_price DECIMAL(12,2) NOT NULL,FOREIGN KEY(order_id) REFERENCES shop_order(order_id),FOREIGN KEY(variant_id) REFERENCES product_variant(variant_id));
+CREATE TABLE payment (payment_id BIGINT AUTO_INCREMENT PRIMARY KEY,order_id BIGINT NOT NULL UNIQUE,payment_method VARCHAR(20) NOT NULL,payment_status VARCHAR(20) NOT NULL,amount DECIMAL(12,2) NOT NULL,transaction_id VARCHAR(255),paid_at TIMESTAMP(6),FOREIGN KEY(order_id) REFERENCES shop_order(order_id));
+CREATE TABLE review (review_id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL,product_id BIGINT NOT NULL,rating INT NOT NULL,comment TEXT,image_url VARCHAR(500),created_at TIMESTAMP(6) NOT NULL,FOREIGN KEY(user_id) REFERENCES app_user(id),FOREIGN KEY(product_id) REFERENCES product(product_id),CHECK(rating BETWEEN 1 AND 5),UNIQUE(user_id,product_id));
+CREATE TABLE product_interaction (id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL,product_id BIGINT NOT NULL,event_type VARCHAR(20) NOT NULL,created_at TIMESTAMP(6) NOT NULL,FOREIGN KEY(user_id) REFERENCES app_user(id),FOREIGN KEY(product_id) REFERENCES product(product_id));
+CREATE INDEX idx_product_category_status ON product(category_id,status);
+CREATE INDEX idx_order_user_created ON shop_order(user_id,created_at);
+CREATE INDEX idx_interaction_user ON product_interaction(user_id,created_at);

@@ -1,0 +1,25 @@
+CREATE TABLE app_user (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(120) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'USER',
+    created_at TIMESTAMP(6) NOT NULL
+);
+
+CREATE TABLE prediction (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES app_user(id),
+    patient_code VARCHAR(80),
+    age INTEGER NOT NULL, bp NUMERIC(8,2) NOT NULL,
+    htn VARCHAR(3) NOT NULL, dm VARCHAR(3) NOT NULL, cad VARCHAR(3) NOT NULL,
+    appet VARCHAR(4) NOT NULL, pe VARCHAR(3) NOT NULL, ane VARCHAR(3) NOT NULL,
+    sg NUMERIC(5,3) NOT NULL, al INTEGER NOT NULL, su INTEGER NOT NULL,
+    rbc VARCHAR(8) NOT NULL, pc VARCHAR(8) NOT NULL, pcc VARCHAR(11) NOT NULL, ba VARCHAR(11) NOT NULL,
+    bgr NUMERIC(10,2) NOT NULL, bu NUMERIC(10,2) NOT NULL, sc NUMERIC(10,2) NOT NULL,
+    sod NUMERIC(10,2) NOT NULL, pot NUMERIC(10,2) NOT NULL, hemo NUMERIC(10,2) NOT NULL,
+    pcv NUMERIC(10,2) NOT NULL, wc NUMERIC(12,2) NOT NULL, rc NUMERIC(10,2) NOT NULL,
+    status VARCHAR(20) NOT NULL, outcome VARCHAR(30), risk_score NUMERIC(6,5),
+    model_version VARCHAR(80), failure_reason VARCHAR(500), created_at TIMESTAMP(6) NOT NULL
+);
+CREATE INDEX idx_prediction_user_created ON prediction(user_id, created_at DESC);
