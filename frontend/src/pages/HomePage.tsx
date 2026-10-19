@@ -2,7 +2,7 @@ import { Icon } from '../components/ui/Icon';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore';
-import { useUIStore } from '../stores/uiStore';
+import { AvailableCoupons } from '../components/catalog/AvailableCoupons';
 import { useProducts, useRecommendations } from '../hooks/useCatalog';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { CollectionBanner } from '../components/catalog/CollectionBanner';
@@ -10,15 +10,6 @@ import { ErrorMessage, Loading } from '../components/ui/Feedback';
 import { lookbook } from '../lib/lookbook';
 export function HomePage() {
   const token = useAuthStore((s) => s.token);
-  const notify = useUIStore((s) => s.notify);
-  async function copyCoupon() {
-    try {
-      await navigator.clipboard.writeText('WELCOME10');
-      notify('Đã sao chép mã WELCOME10.');
-    } catch {
-      notify('Mã ưu đãi của bạn: WELCOME10');
-    }
-  }
   return (
     <div className="storefront-home">
       <CollectionBanner />
@@ -60,35 +51,9 @@ export function HomePage() {
           </p>
         </div>
       </section>
-      <section className="coupon-strip store-container" aria-label="Ưu đãi mua sắm">
-        <article className="coupon-ticket">
-          <div className="ticket-icon">%</div>
-          <div>
-            <h3>Giảm 10% đơn hàng</h3>
-            <p>Đơn từ 300.000₫ · Mã WELCOME10</p>
-            <small>Theo thời hạn và lượt sử dụng của mã</small>
-          </div>
-          <button onClick={copyCoupon}>Sao chép mã</button>
-        </article>
-        <article className="coupon-ticket">
-          <div className="ticket-icon">↗</div>
-          <div>
-            <h3>Giao hàng miễn phí</h3>
-            <p>Cho đơn hàng từ 1.000.000₫</p>
-            <small>Tự động áp dụng khi thanh toán</small>
-          </div>
-          <Link to="/shop">Mua sắm ngay</Link>
-        </article>
-        <article className="coupon-ticket">
-          <div className="ticket-icon">✧</div>
-          <div>
-            <h3>Mặc đẹp mỗi ngày</h3>
-            <p>Khám phá gợi ý dành riêng cho bạn</p>
-            <small>Phối đồ, chọn size và hỗ trợ đơn hàng</small>
-          </div>
-          <Link to="/advisor">Khám phá</Link>
-        </article>
-      </section>
+      <div className="store-container" id="ma-giam-gia">
+        <AvailableCoupons />
+      </div>
       <section className="store-container category-discovery">
         <div className="store-section-heading">
           <h2>BẠN ĐANG TÌM GÌ?</h2>

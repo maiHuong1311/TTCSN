@@ -26,6 +26,11 @@ public class CouponService {
         return repository.findAll().stream().map(this::dto).toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<CouponResponse> available() {
+        return repository.findAvailable(clock.instant()).stream().map(this::dto).toList();
+    }
+
     public CouponResponse save(Long id, CouponRequest r) {
         if (
             !r.endDate().isAfter(r.startDate()) ||

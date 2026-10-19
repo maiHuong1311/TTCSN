@@ -1,3 +1,4 @@
+import { couponKeys } from '../hooks/useCoupons';
 import { display } from '../lib/labels';
 import { productImageUrl } from '../lib/images';
 import { ImagePicker } from '../components/catalog/ImagePicker';
@@ -74,6 +75,7 @@ function useRefresh() {
   const qc = useQueryClient();
   const notify = useUIStore((s) => s.notify);
   return () => {
+    qc.invalidateQueries({ queryKey: couponKeys.all });
     qc.invalidateQueries({ queryKey: adminKeys.all });
     qc.invalidateQueries({ queryKey: catalogKeys.all });
     qc.invalidateQueries({ queryKey: shopKeys.all });

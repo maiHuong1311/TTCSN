@@ -7,6 +7,7 @@ import * as api from '../api/shop';
 import { CheckoutPage } from './CheckoutPage';
 import { CartPage } from './CartPage';
 import type { Cart } from '../types/domain';
+vi.mock('../api/coupons', () => ({ fetchAvailableCoupons: async () => [] }));
 const cart: Cart = {
   cartId: 1,
   subtotal: 390000,

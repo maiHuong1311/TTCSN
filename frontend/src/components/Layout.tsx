@@ -11,7 +11,7 @@ const navigation = [
   { label: 'VÁY - ĐẦM', to: '/shop?categoryId=3' },
   { label: 'QUẦN NỮ', to: '/shop?categoryId=2' },
   { label: 'PHỤ KIỆN', to: '/shop?categoryId=4' },
-  { label: 'ƯU ĐÃI', to: '/#uu-dai', sale: true },
+  { label: 'ƯU ĐÃI', to: '/#ma-giam-gia', sale: true },
 ];
 export function Layout() {
   const [menu, setMenu] = useState(false);
@@ -49,8 +49,8 @@ export function Layout() {
     <>
       <div className="announcement">
         <span>CHÀO BẠN ĐẾN VỚI FORME</span>
-        <Link to="/shop">
-          Ưu đãi 10% với mã WELCOME10 · Đơn từ 300.000₫ <b>→</b>
+        <Link to="/#ma-giam-gia">
+          Khám phá các mã giảm giá hiện có <b>→</b>
         </Link>
         <span>THANH TOÁN KHI NHẬN HÀNG</span>
       </div>
