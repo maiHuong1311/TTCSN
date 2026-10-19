@@ -17,9 +17,16 @@ BASE.mkdir(parents=True, exist_ok=True)
 DOCKER = r'''#!/usr/bin/env bash
 set -eu
 echo "$*" >> "$TEST_LOG"
+if [[ " $* " == *' compose '* ]]; then
+  [[ -n "${FORME_IMAGE:-}" ]] || { echo 'FORME_IMAGE lost across sudo' >&2; exit 88; }
+  echo "IMAGE=$FORME_IMAGE" >> "$TEST_LOG"
+fi
 case " $* " in
-  *' info '*) exit 0 ;;
-  *' compose version --short '*) echo '2.40.3'; exit 0 ;;
+  *' info '*)
+    [[ "${TEST_SUDO:-0}" != 1 || "${MOCK_IN_SUDO:-0}" == 1 ]]; exit ;;
+  *' compose version --short '*)
+    [[ "$TEST_MODE" != missing-compose ]] || exit 125
+    echo '2.40.3'; exit 0 ;;
   *' login '*) cat >/dev/null; exit 0 ;;
   *' config --quiet '*) exit 0 ;;
   *' pull backend '*) [[ "$TEST_MODE" != pull-fails ]]; exit ;;
@@ -38,7 +45,7 @@ exit 99
 
 
 class DeployTests(unittest.TestCase):
-    def run_deploy(self, mode='success', old=True, jwt=None, tag='a' * 40):
+    def run_deploy(self, mode='success', old=True, jwt=None, tag='a' * 40, sudo=False):
         self.temp = tempfile.TemporaryDirectory(dir=BASE)
         self.addCleanup(self.temp.cleanup)
         work = Path(self.temp.name)
@@ -54,6 +61,7 @@ class DeployTests(unittest.TestCase):
         mocks = {
             'docker': DOCKER,
             'aws': '#!/usr/bin/env bash\necho dummy-token\n',
+            'sudo': '#!/usr/bin/env bash\nset -eu\n[[ "$1" != -n ]] || shift\nunset FORME_IMAGE\nexport MOCK_IN_SUDO=1\nexec "$@"\n',
             'flock': '#!/usr/bin/env bash\nexit 0\n',
             'stat': '#!/usr/bin/env bash\necho 10001:10001\n',
             'python3': '#!/usr/bin/env bash\nexec ' + "'" + sys.executable.replace('\\', '/') + "'" + ' "$@"\n',
@@ -65,7 +73,7 @@ class DeployTests(unittest.TestCase):
         env = os.environ.copy()
         env.update(MOCK_BIN=commands.as_posix(), TEST_LOG=(work / 'calls').as_posix(),
                    TEST_COUNTER=(work / 'counter').as_posix(), TEST_MODE=mode,
-                   TEST_OLD='1' if old else '0', TAG=tag)
+                   TEST_OLD='1' if old else '0', TAG=tag, TEST_SUDO='1' if sudo else '0')
         prefix = '$(cygpath -u "$MOCK_BIN")' if os.name == 'nt' else '$MOCK_BIN'
         command = f'export PATH="{prefix}:$PATH"; exec bash ./deploy.sh "$TAG"'
         result = subprocess.run([BASH, '-c', command], cwd=work, env=env,
@@ -113,6 +121,23 @@ class DeployTests(unittest.TestCase):
         result, work, calls = self.run_deploy(tag='bad;echo-invalid')
         self.assertEqual(result.returncode, 2)
         self.assertEqual(calls, '')
+
+    def test_missing_compose_reports_install_command_without_replacing_container(self):
+        result, work, calls = self.run_deploy('missing-compose')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('sudo apt-get install -y docker-compose-v2', result.stderr)
+        self.assertNotIn(' up ', calls)
+
+    def test_sudo_keeps_image_for_compose_without_preserving_all_env(self):
+        result, work, calls = self.run_deploy(sudo=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('IMAGE=331545064056.dkr.ecr.ap-southeast-1.amazonaws.com/forme-backend:' + 'a' * 40, calls)
+
+    def test_sudo_rollback_receives_previous_image(self):
+        result, work, calls = self.run_deploy('recover', sudo=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('IMAGE=331545064056.dkr.ecr.ap-southeast-1.amazonaws.com/forme-backend:previous', calls)
+        self.assertTrue((work / '.deploy/current-image').read_text().strip().endswith(':previous'))
 
 
 if __name__ == '__main__':
