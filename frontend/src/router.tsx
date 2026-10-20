@@ -11,6 +11,7 @@ import { useAuthStore } from './stores/authStore';
 import { Layout } from './components/Layout';
 import { AdminLayout } from './components/AdminLayout';
 import { HomePage } from './pages/HomePage';
+import { CouponsPage } from './pages/CouponsPage';
 import { AuthPage } from './pages/AuthPage';
 import { PasswordResetPage } from './pages/PasswordResetPage';
 import { DemoPaymentPage } from './pages/DemoPaymentPage';
@@ -49,6 +50,7 @@ export const appRoutes: RouteObject[] = [
     element: <Layout />,
     children: [
       { path: '/', element: <HomePage /> },
+      { path: '/coupons', element: <CouponsPage /> },
       { path: '/login', element: <AuthPage /> },
       { path: '/demo-payment', element: <DemoPaymentPage /> },
       { path: '/forgot-password', element: <PasswordResetPage key="forgot" /> },
