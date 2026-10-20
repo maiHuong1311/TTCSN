@@ -11,7 +11,8 @@ const navigation = [
   { label: 'VÁY - ĐẦM', to: '/shop?categoryId=3' },
   { label: 'QUẦN NỮ', to: '/shop?categoryId=2' },
   { label: 'PHỤ KIỆN', to: '/shop?categoryId=4' },
-  { label: 'ƯU ĐÃI', to: '/#ma-giam-gia', sale: true },
+  { label: 'ƯU ĐÃI', to: '/#uu-dai', sale: true },
+  { label: 'MÃ GIẢM GIÁ', to: '/coupons', end: true },
 ];
 export function Layout() {
   const [menu, setMenu] = useState(false);
@@ -49,7 +50,7 @@ export function Layout() {
     <>
       <div className="announcement">
         <span>CHÀO BẠN ĐẾN VỚI FORME</span>
-        <Link to="/#ma-giam-gia">
+        <Link to="/coupons">
           Khám phá các mã giảm giá hiện có <b>→</b>
         </Link>
         <span>THANH TOÁN KHI NHẬN HÀNG</span>
@@ -180,6 +181,7 @@ export function Layout() {
           </p>
           <div className="social-links">
             <Link to="/shop">Bộ sưu tập</Link>
+            <Link to="/coupons">Mã giảm giá</Link>
             <Link to="/advisor">Trợ lý phong cách</Link>
           </div>
         </div>

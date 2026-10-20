@@ -7,10 +7,12 @@ export function AvailableCoupons({
   subtotal,
   onApply,
   selectedCode,
+  showRefresh = false,
 }: {
   subtotal?: number;
   onApply?: (code: string) => void;
   selectedCode?: string;
+  showRefresh?: boolean;
 }) {
   const query = useAvailableCoupons();
   const notify = useUIStore((s) => s.notify);
@@ -31,6 +33,10 @@ export function AvailableCoupons({
     <section className="available-coupons" aria-label="Mã giảm giá hiện có">
       <h2>Mã giảm giá hiện có</h2>
       <p>Mỗi khách hàng được sử dụng mỗi mã một lần.</p>
+      {showRefresh && !query.isError && <button
+        type="button" className="text-button" disabled={query.isFetching}
+        onClick={() => void query.refetch()}
+      >{query.isFetching ? 'Đang làm mới…' : 'Làm mới danh sách'}</button>}
       {query.isPending && <p role="status">Đang tải mã giảm giá…</p>}
       {query.isError ? (
         <>

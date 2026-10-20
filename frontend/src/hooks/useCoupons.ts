@@ -12,6 +12,7 @@ export const useAvailableCoupons = () => {
     queryKey: couponKeys.customer(userId),
     queryFn: fetchAvailableCoupons,
     refetchInterval: 30000,
+    refetchOnWindowFocus: true,
     staleTime: 0,
   });
 };
