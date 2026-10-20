@@ -2,7 +2,6 @@ import { Icon } from '../components/ui/Icon';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore';
-import { AvailableCoupons } from '../components/catalog/AvailableCoupons';
 import { useProducts, useRecommendations } from '../hooks/useCatalog';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { CollectionBanner } from '../components/catalog/CollectionBanner';
@@ -51,10 +50,6 @@ export function HomePage() {
           </p>
         </div>
       </section>
-      <div className="store-container" id="ma-giam-gia">
-        <AvailableCoupons />
-        <Link className="text-button" to="/coupons">Xem tất cả mã giảm giá →</Link>
-      </div>
       <section className="store-container category-discovery">
         <div className="store-section-heading">
           <h2>BẠN ĐANG TÌM GÌ?</h2>

@@ -2,7 +2,7 @@
 
 - `GET /api/coupons` cho phép khách chưa đăng nhập xem các mã có hiệu lực tại thời điểm hiện tại và còn lượt dùng. API quản trị vẫn yêu cầu quyền Admin.
 - Mục **MÃ GIẢM GIÁ** trên thanh điều hướng mở trang `/coupons`, cho phép xem danh sách, sao chép và làm mới để lấy các mã admin vừa thêm. Trang công khai; tài khoản Admin vẫn ở giao diện quản trị riêng.
-- Trang chủ hiển thị mã, mức giảm, giá trị đơn tối thiểu, thời hạn và nút sao chép; không còn quảng cáo cố định WELCOME10.
+- Danh sách mã chỉ hiển thị tại trang `/coupons` và phần chọn mã khi thanh toán. Trang chủ/Ưu đãi giữ phần sản phẩm giảm giá, không lặp lại danh sách mã.
 - Thanh toán cho phép chọn mã từ danh sách hoặc nhập thủ công. Mã chưa đủ giá trị đơn được vô hiệu hóa kèm số tiền cần mua thêm.
 - Danh sách làm mới mỗi 30 giây và khi quay lại cửa sổ. Backend kiểm tra lại thời hạn, lượt dùng và đơn tối thiểu khi báo giá/đặt hàng.
 - Quy tắc đếm lượt giữ nguyên hệ thống hiện có: các đơn đã ghi nhận mã đều được tính, kể cả đơn chờ hoặc hủy.
