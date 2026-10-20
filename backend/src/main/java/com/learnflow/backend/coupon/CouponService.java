@@ -27,8 +27,8 @@ public class CouponService {
     }
 
     @Transactional(readOnly = true)
-    public List<CouponResponse> available() {
-        return repository.findAvailable(clock.instant()).stream().map(this::dto).toList();
+    public List<CouponResponse> available(Long userId) {
+        return repository.findAvailable(clock.instant(), userId).stream().map(this::dto).toList();
     }
 
     public CouponResponse save(Long id, CouponRequest r) {

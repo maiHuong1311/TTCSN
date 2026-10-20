@@ -5,6 +5,9 @@
 - Thanh toán cho phép chọn mã từ danh sách hoặc nhập thủ công. Mã chưa đủ giá trị đơn được vô hiệu hóa kèm số tiền cần mua thêm.
 - Danh sách làm mới mỗi 30 giây và khi quay lại cửa sổ. Backend kiểm tra lại thời hạn, lượt dùng và đơn tối thiểu khi báo giá/đặt hàng.
 - Quy tắc đếm lượt giữ nguyên hệ thống hiện có: các đơn đã ghi nhận mã đều được tính, kể cả đơn chờ hoặc hủy.
+- Mỗi khách hàng chỉ dùng mỗi mã một lần. Lượt được ghi nhận khi tạo đơn thành công; báo giá hoặc đặt hàng thất bại không tiêu hao lượt. Hủy đơn không hoàn lại lượt dùng mã.
+- Khách đã đăng nhập chỉ thấy các mã mình chưa dùng; khách chưa đăng nhập vẫn thấy các mã còn hiệu lực chung. Cache frontend tách theo tài khoản để không lẫn danh sách khi đổi người dùng.
+- Backend kiểm tra lịch sử theo cặp khách hàng/mã ở cả báo giá và tạo đơn. Tạo đơn giữ khóa khách hàng đến khi commit, kết hợp khóa mã hiện có để ngăn hai đơn đồng thời vượt giới hạn.
 - Lỗi tải danh sách có nút thử lại; danh sách rỗng không hiển thị mã thay thế giả định.
 - Không cần migration hoặc thay đổi biến môi trường.
 
@@ -19,7 +22,9 @@ Trên HTTP, trình duyệt có thể chặn Clipboard API. Khi đó thông báo 
 
 ## Kiểm chứng
 
-- Backend: Maven `verify` trên MySQL local database `fashion_store_test` và Redis local; 50 bài đạt, không bỏ qua.
-- Frontend: lint và build đạt; 36 bài đạt khi chạy Vitest với một worker. Lần chạy song song đầu tiên có một test quản trị cũ vượt timeout; chạy lại toàn bộ với một worker đạt, không tăng timeout hay bỏ qua test.
+- Backend: Maven `verify` trên MySQL local database `fashion_store_test` và Redis local; 51 bài đạt, không bỏ qua.
+- Frontend: lint và build đạt; 37 bài đạt khi chạy Vitest với một worker.
 - Kiểm thử tích hợp xác nhận API công khai loại mã chưa bắt đầu, hết hạn đúng thời điểm kết thúc, giới hạn 0 và hết lượt do đơn đã đặt; API quản trị không bị mở công khai.
 - Kiểm thử giao diện xác nhận sao chép mã, ẩn mã hết hạn, điều kiện đơn tối thiểu, áp dụng mã và trạng thái trống/lỗi/thử lại.
+
+- Kiểm thử bổ sung: báo giá lặp không mất lượt; báo giá/đặt hàng với mã đã dùng bị chặn kể cả sau khi hủy đơn; giỏ hàng giữ nguyên; khách khác vẫn được dùng lần đầu; cache làm mới khi đổi tài khoản.
