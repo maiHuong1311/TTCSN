@@ -53,6 +53,7 @@ export function HomePage() {
       </section>
       <div className="store-container" id="ma-giam-gia">
         <AvailableCoupons />
+        <Link className="text-button" to="/coupons">Xem tất cả mã giảm giá →</Link>
       </div>
       <section className="store-container category-discovery">
         <div className="store-section-heading">
