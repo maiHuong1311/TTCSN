@@ -12,4 +12,6 @@ public interface ShopOrderRepository
     java.util.Optional<ShopOrder> lockById(@org.springframework.data.repository.query.Param("id") Long id);
 
     long countByCouponId(Long id);
+
+    boolean existsByUserIdAndCouponId(Long userId, Long couponId);
 }

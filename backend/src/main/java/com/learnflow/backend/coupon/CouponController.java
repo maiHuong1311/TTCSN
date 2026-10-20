@@ -2,6 +2,7 @@ package com.learnflow.backend.coupon;
 
 import com.learnflow.backend.coupon.dto.CouponResponse;
 import java.util.List;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,7 @@ public class CouponController {
     }
 
     @GetMapping
-    public List<CouponResponse> available() {
-        return service.available();
+    public List<CouponResponse> available(Authentication authentication) {
+        return service.available(authentication == null ? null : (Long) authentication.getPrincipal());
     }
 }

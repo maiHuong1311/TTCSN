@@ -30,6 +30,7 @@ export function AvailableCoupons({
   return (
     <section className="available-coupons" aria-label="Mã giảm giá hiện có">
       <h2>Mã giảm giá hiện có</h2>
+      <p>Mỗi khách hàng được sử dụng mỗi mã một lần.</p>
       {query.isPending && <p role="status">Đang tải mã giảm giá…</p>}
       {query.isError ? (
         <>

@@ -57,6 +57,9 @@ public class OrderService {
         BigDecimal discount = BigDecimal.ZERO;
         if (code != null && !code.isBlank()) {
             var c = coupons.lock(code);
+            // Checkout holds the customer lock until commit, so simultaneous orders
+            // cannot both pass this check. Cancelled orders also consume the one use.
+            if (orders.existsByUserIdAndCouponId(u, c.id)) throw bad("Coupon already used by customer");
             discount = coupons.discount(c, cart.subtotal(), orders.countByCouponId(c.id));
         }
         BigDecimal fee =
