@@ -18,7 +18,8 @@ public record ProductResponse(
     Instant createdAt,
     Instant updatedAt,
     List<VariantResponse> variants,
-    List<ImageResponse> images
+    List<ImageResponse> images,
+    String sizeChartCode
 ) {
     public record VariantResponse(
         Long variantId,

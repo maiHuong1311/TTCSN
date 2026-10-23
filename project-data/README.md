@@ -1,6 +1,6 @@
 # FORME — Fashion E-Commerce
 
-Máy mới bắt đầu tại [Hướng dẫn chạy dự án](HUONG_DAN_CHAY_DU_AN.md).
+Máy mới bắt đầu tại [Hướng dẫn chạy dự án](HUONG_DAN_CHAY_DU_AN.md). Phần trợ lý: [Gemini API trực tiếp từ Spring Boot](HUONG_DAN_GEMINI_TRUC_TIEP.md), không cần Python. Phương án cũ tùy chọn: [FastAPI/Chroma](HUONG_DAN_AI_LOCAL.md).
 
 Dự án chạy local: **Java Spring Boot + MySQL + React.js**, phát triển tiếp từ `backend`. Giao diện tiếng Việt, viết bằng React/TypeScript với HTML và CSS thuần, React Query quản lý dữ liệu API, Zustand giữ phiên đăng nhập và tùy chọn UI. Quyết định điều chỉnh từ quy ước LearnFlow được ghi ở [DECISIONS.md](DECISIONS.md).
 

@@ -93,6 +93,7 @@ export interface Variant {
   sku: string;
 }
 export interface Product {
+  sizeChartCode?: string | null;
   productId: number;
   categoryId: number;
   productName: string;
@@ -109,6 +110,7 @@ export interface Product {
   images: { imageId: number; imageUrl: string; isPrimary: boolean }[];
 }
 export interface ProductRequest {
+  sizeChartCode?: string | null;
   categoryId: number;
   productName: string;
   description: string;
@@ -243,10 +245,28 @@ export interface ChatRequest {
   orderId: number | null;
   heightCm: number | null;
   weightKg: number | null;
+  productId?: number | null;
+  sizeChartCode?: string | null;
+  bustCm?: number | null;
+  waistCm?: number | null;
+  hipCm?: number | null;
+  shoulderCm?: number | null;
+  bodyShape?: string | null;
+  allowExternalAi?: boolean;
 }
 export interface ChatResponse {
+  sizeAdvice?: { chartCode: string; chartName: string | null; size: string | null; explanation: string } | null;
   mode: string;
   answer: string;
   suggestedSize: string | null;
   products: Product[];
+}
+
+export interface SizeChart {
+  id: number; code: string; name: string; appliesTo: string; measurements: string[];
+  rows: { size: string; ranges: Record<string, { min: number; max: number }> }[];
+}
+export interface StoreInfo {
+  contact: { hotline: string; email: string; address: string; supportHours: string; timezone: string };
+  policies: { id: string; title: string; paragraphs: string[] }[];
 }

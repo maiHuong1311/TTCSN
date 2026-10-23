@@ -43,6 +43,38 @@ class StoreIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     AuthService users;
 
+    @Test
+    void storePoliciesAndSizeChartsArePublicAndLocalSizingMatchesProvidedMeasurements() throws Exception {
+        mvc.perform(get("/api/size-charts")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(4));
+        mvc.perform(get("/api/store-info")).andExpect(status().isOk()).andExpect(jsonPath("$.contact.hotline").value("0982655491"));
+        var advice=postJson("/api/ai/chat",Map.of("message","Tư vấn size", "sizeChartCode","SIZE_DAM", "bustCm",84,"waistCm",66,"hipCm",90),token,200);
+        assertEquals("M",advice.get("suggestedSize").asText());
+        advice=postJson("/api/ai/chat",Map.of("message","Tư vấn size", "sizeChartCode","SIZE_DAM", "bustCm",120,"waistCm",66,"hipCm",90),token,200);
+        assertTrue(advice.get("suggestedSize").isNull());
+        var faq=postJson("/api/ai/chat",Map.of("message","Chính sách đổi trả và hotline"),token,200);
+        assertTrue(faq.get("answer").asText().contains("7 ngày"));
+        assertTrue(faq.get("answer").asText().contains("0982655491"));
+        var cheap=postJson("/api/ai/chat",Map.of("message","Tôi cần áo dưới 1đ"),token,200);
+        assertTrue(cheap.get("products").isEmpty());
+    }
+
+    @Test
+    void searchTrackingRequiresConsentAndCanBeDeleted() throws Exception {
+        postJson("/api/search-events",Map.of("query","linen","consent",false),token,400);
+        postJson("/api/search-events",Map.of("query","linen","consent",true),token,200);
+        mvc.perform(get("/api/recommendations?personalized=true").header("Authorization","Bearer "+token)).andExpect(status().isOk());
+        mvc.perform(delete("/api/interactions").header("Authorization","Bearer "+token)).andExpect(status().isOk());
+    }
+
+    @Test
+    void chatOrderLookupCannotReadAnotherCustomersOrder() throws Exception {
+        long id=order("COD","").get("orderId").asLong();
+        var other=register("ai"+UUID.randomUUID().toString().replace("-", "").substring(0,12));
+        postJson("/api/ai/chat",Map.of("message","Đơn hàng #"+id),other,404);
+        var own=postJson("/api/ai/chat",Map.of("message","Đơn hàng #"+id),token,200);
+        assertTrue(own.get("answer").asText().contains("Chờ xác nhận"));
+    }
+
     @MockBean
     RegistrationMailService mail;
 

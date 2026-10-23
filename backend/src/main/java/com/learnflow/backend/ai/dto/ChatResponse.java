@@ -7,5 +7,15 @@ public record ChatResponse(
     String mode,
     String answer,
     String suggestedSize,
-    List<ProductResponse> products
-) {}
+    List<ProductResponse> products,
+    com.learnflow.backend.store.SizeGuideService.Advice sizeAdvice
+) {
+    public ChatResponse(
+        String mode,
+        String answer,
+        String suggestedSize,
+        List<ProductResponse> products
+    ) {
+        this(mode, answer, suggestedSize, products, null);
+    }
+}

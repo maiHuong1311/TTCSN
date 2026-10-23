@@ -22,6 +22,9 @@ public class ProductInteraction {
     @Column(name = "event_type", length = 20)
     public String eventType;
 
+    @Column(name = "query_text", length = 100)
+    public String queryText;
+
     @Column(name = "created_at")
     public Instant createdAt;
 

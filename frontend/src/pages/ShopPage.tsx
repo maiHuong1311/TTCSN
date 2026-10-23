@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { trackSearch } from '../api/catalog';
+import { useUIStore } from '../stores/uiStore';
 import { useSearchParams } from 'react-router-dom';
 import { useProducts, useCategories } from '../hooks/useCatalog';
 import { ProductCard } from '../components/catalog/ProductCard';
@@ -12,6 +15,12 @@ export function ShopPage() {
     page: Math.max(0, Number(params.get('page')) || 0),
     size: 12,
   };
+  const tracking = useUIStore((s) => s.tracking);
+  useEffect(() => {
+    if (!tracking || filters.q.trim().length < 2 || filters.q.length > 100) return;
+    const timer = setTimeout(() => { void trackSearch(filters.q).catch(() => {}); }, 800);
+    return () => clearTimeout(timer);
+  }, [filters.q, tracking]);
   const products = useProducts(filters);
   const categories = useCategories();
   function change(k: string, v: string) {

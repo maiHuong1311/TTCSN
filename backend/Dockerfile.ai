@@ -1,0 +1,21 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    AI_DATA_DIRECTORY=/app/data \
+    AI_KNOWLEDGE_DIRECTORY=/app/src/main/resources/fashion \
+    ANONYMIZED_TELEMETRY=False \
+    LANGCHAIN_TRACING_V2=false
+
+WORKDIR /app/ai-service
+COPY ai-service/requirements.lock.txt ./requirements.lock.txt
+RUN pip install --no-cache-dir -r requirements.lock.txt \
+    && groupadd --gid 10001 forme \
+    && useradd --uid 10001 --gid forme --no-create-home forme \
+    && mkdir -p /app/data \
+    && chown 10001:10001 /app/data
+
+COPY --chown=10001:10001 ai-service/forme_ai ./forme_ai
+COPY --chown=10001:10001 src/main/resources/fashion /app/src/main/resources/fashion
+USER 10001:10001
+CMD ["python", "-m", "uvicorn", "forme_ai.app:create_app", "--factory", "--host", "127.0.0.1", "--port", "8001"]

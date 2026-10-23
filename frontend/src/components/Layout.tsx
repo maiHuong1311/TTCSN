@@ -188,8 +188,13 @@ export function Layout() {
         <div>
           <strong>HỖ TRỢ KHÁCH HÀNG</strong>
           <Link to="/orders">Tra cứu đơn hàng</Link>
-          <Link to="/advisor">Chính sách giao hàng</Link>
-          <Link to="/advisor">Chính sách đổi trả</Link>
+          <Link to="/policies#shipping">Chính sách giao hàng</Link>
+          <Link to="/policies#returns">Chính sách đổi trả</Link>
+          <Link to="/size-guide">Bảng size</Link>
+          <Link to="/policies#privacy">Chính sách bảo mật</Link>
+          <a href="tel:0982655491">Hotline: 0982655491</a>
+          <a href="mailto:maihunw@gmail.com">maihunw@gmail.com</a>
+          <span>Nhổn, Hà Nội · Hỗ trợ 08:00–23:00</span>
           <Link to="/account">Quản lý tài khoản</Link>
         </div>
         <div>

@@ -2245,3 +2245,11 @@ th {
 .available-coupon small { color: #666; }
 .available-coupon button { align-self: flex-start; margin-top: auto; white-space: normal; overflow-wrap: anywhere; }
 .available-coupon button:disabled { opacity: .55; cursor: not-allowed; }
+.size-chart-section, .policy-section { margin: 36px 0; scroll-margin-top: 150px; }
+.policies-page { max-width: 1100px; }
+.policy-section p { line-height: 1.85; }
+.size-guide-page table caption { padding: 12px; text-align: left; font-weight: 600; }
+.advisor-answer { white-space: pre-line; }
+.advisor-quick-questions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.advisor-quick-questions button { white-space: normal; text-align: left; }
+.product-size-links { display: flex; flex-wrap: wrap; gap: 12px; }

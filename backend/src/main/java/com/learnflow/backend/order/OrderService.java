@@ -110,6 +110,7 @@ public class OrderService {
             i.quantity = line.quantity;
             i.unitPrice = product.salePrice == null ? product.price : product.salePrice;
             items.save(i);
+            if (r.trackingConsent()) catalog.trackEvent(u, product.id, "Purchase");
         }
         Payment p = new Payment();
         p.orderId = o.id;
