@@ -1,0 +1,12 @@
+**
+!Dockerfile.ai
+!Dockerfile.ai.dockerignore
+!ai-service/
+!ai-service/requirements.lock.txt
+!ai-service/forme_ai/
+!ai-service/forme_ai/*.py
+!src/
+!src/main/
+!src/main/resources/
+!src/main/resources/fashion/
+!src/main/resources/fashion/*.json

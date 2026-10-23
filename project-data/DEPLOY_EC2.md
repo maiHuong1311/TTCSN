@@ -66,6 +66,10 @@ BREVO_API_KEY=
 BREVO_SENDER_EMAIL=
 AI_API_URL=
 AI_API_KEY=
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-3.5-flash-lite
+AI_CONNECT_TIMEOUT_SECONDS=3
+AI_READ_TIMEOUT_SECONDS=30
 ```
 
 Không giữ placeholder `THAY_...`, không bọc giá trị bằng dấu nháy và không dùng `export KEY=...`. Đây là định dạng env raw: các dấu `$`, `&`, `#` trong giá trị được giữ nguyên. Không chạy `source .env`. Script chỉ kiểm tra giá trị bắt buộc, không in chúng ra log.
@@ -88,14 +92,23 @@ Vào repo → **Settings → Secrets and variables → Actions → New repositor
 Lấy host fingerprint **từ terminal EC2 mà bạn đã SSH tin cậy**:
 
 ```bash
-sudo ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub -E sha256
+sudo ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub -E sha256
 ```
 
-Sao chép phần `SHA256:...` vào secret. Workflow dùng `appleboy/ssh-action` với fingerprint để xác minh server, xem [tài liệu action chính thức](https://github.com/appleboy/ssh-action).
+Sao chép phần `SHA256:...` vào secret. Với drone-ssh 1.8.4 và EC2 hiện tại, client chọn host key ECDSA, nên fingerprint ED25519 sẽ không khớp. Đã xác minh qua SSH tin cậy và thử lệnh printf bằng drone-ssh 1.8.4 thành công ngày 19/10/2026 với fingerprint ECDSA `SHA256:SuUDkLKgqggcnWsvc7+MXnhLoNXMEvQNWw7meioe+Ys`. Nếu server/host key thay đổi, phải lấy lại từ kết nối tin cậy. Workflow dùng `appleboy/ssh-action` với fingerprint để xác minh server, xem [tài liệu action chính thức](https://github.com/appleboy/ssh-action).
 
 Nếu SSH workflow trước của bạn dùng tên secret khác, đổi các tham chiếu `secrets.EC2_...` trong workflow cho khớp hoặc tạo tên secret như bảng.
 
 ### Quyền push ECR của GitHub Actions
+
+Đã xác minh metadata của repo ngày 19/10/2026: GitHub dùng immutable subject, prefix `repo:maiHuong1311@219676512/TTCSN@1424532443`. Hai file JSON chuẩn bị sẵn cho repo/account này:
+
+- `config/github-actions-aws-trust.json`: trust policy của role, chỉ chấp nhận main.
+- `config/github-actions-ecr-push.json`: permission policy chỉ push repository FORME.
+
+Thiết lập OIDC: IAM → Identity providers → Add provider → OpenID Connect, URL `https://token.actions.githubusercontent.com`, audience `sts.amazonaws.com` (nếu đã có thì dùng lại). Tạo IAM role bằng Custom trust policy, dán file trust JSON; đặt tên `forme-github-actions-deploy`. Thêm inline permission policy từ file ECR push JSON. Cuối cùng tạo GitHub repository secret `AWS_ROLE_ARN` có giá trị `arn:aws:iam::331545064056:role/forme-github-actions-deploy`. Không gắn role này thay cho role EC2. Các file JSON không chứa private key hoặc secret.
+
+Nếu thay repo, thêm GitHub Environment hoặc đổi nhánh phát hành, phải điều chỉnh trust policy theo subject tương ứng. Lỗi thiếu credentials trên GitHub runner không được khắc phục bằng việc chạy `aws configure` trên EC2.
 
 SSH đã kết nối chưa đồng nghĩa runner có quyền push ECR. Chọn một cách:
 
@@ -167,4 +180,4 @@ Nếu sudo không cho preserve-env, dùng `sudo env FORME_IMAGE="$FORME_IMAGE" d
 - Rollback chỉ đổi image, không quay lui Flyway hoặc khôi phục nội dung `.env` cũ. Sao lưu DB trước khi phát hành migration.
 - Container giới hạn RAM 640 MB, heap Java 256 MB vì máy hiện có khoảng 2 GB RAM và đang chạy MySQL/Redis. Theo dõi khi chạy; nếu thiếu bộ nhớ phải điều chỉnh tài nguyên, không chỉ tăng heap.
 - Profile AWS không tự tạo admin. Đăng ký/xác minh email và cấp role cho tài khoản quản trị theo hướng dẫn AWS hiện có.
-- Những file này chưa được push, workflow chưa chạy trên GitHub, image chưa được build/push và server chưa được thay đổi từ phiên làm việc này.
+- Ngày 19/10/2026 đã xác minh EC2 thiếu Compose, cài gói `docker-compose-v2` 2.40.3 từ Ubuntu (không nâng cấp gói khác), rồi kiểm tra cấu hình thực tế bằng `config --quiet` thành công. Bước này chưa chạy hoặc thay container backend; cần chạy lại workflow và kiểm tra health để xác nhận deploy.

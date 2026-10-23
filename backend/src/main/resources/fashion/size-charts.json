@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "code": "SIZE_AO_NU",
+    "name": "Áo nữ",
+    "appliesTo": "Áo thun, sơ mi, áo kiểu",
+    "measurements": [
+      "bustCm",
+      "waistCm",
+      "shoulderCm"
+    ],
+    "rows": [
+      {
+        "size": "S",
+        "ranges": {
+          "bustCm": {
+            "min": 80,
+            "max": 84
+          },
+          "waistCm": {
+            "min": 62,
+            "max": 66
+          },
+          "shoulderCm": {
+            "min": 35,
+            "max": 36
+          }
+        }
+      },
+      {
+        "size": "M",
+        "ranges": {
+          "bustCm": {
+            "min": 84,
+            "max": 88
+          },
+          "waistCm": {
+            "min": 66,
+            "max": 70
+          },
+          "shoulderCm": {
+            "min": 36,
+            "max": 37
+          }
+        }
+      },
+      {
+        "size": "L",
+        "ranges": {
+          "bustCm": {
+            "min": 88,
+            "max": 92
+          },
+          "waistCm": {
+            "min": 70,
+            "max": 74
+          },
+          "shoulderCm": {
+            "min": 37,
+            "max": 38
+          }
+        }
+      },
+      {
+        "size": "XL",
+        "ranges": {
+          "bustCm": {
+            "min": 92,
+            "max": 96
+          },
+          "waistCm": {
+            "min": 74,
+            "max": 78
+          },
+          "shoulderCm": {
+            "min": 38,
+            "max": 39
+          }
+        }
+      },
+      {
+        "size": "XXL",
+        "ranges": {
+          "bustCm": {
+            "min": 96,
+            "max": 102
+          },
+          "waistCm": {
+            "min": 78,
+            "max": 84
+          },
+          "shoulderCm": {
+            "min": 39,
+            "max": 41
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "code": "SIZE_QUAN_NU",
+    "name": "Quần nữ",
+    "appliesTo": "Quần jean, quần tây",
+    "measurements": [
+      "waistCm",
+      "hipCm"
+    ],
+    "rows": [
+      {
+        "size": "S",
+        "ranges": {
+          "waistCm": {
+            "min": 62,
+            "max": 66
+          },
+          "hipCm": {
+            "min": 86,
+            "max": 90
+          }
+        }
+      },
+      {
+        "size": "M",
+        "ranges": {
+          "waistCm": {
+            "min": 66,
+            "max": 70
+          },
+          "hipCm": {
+            "min": 90,
+            "max": 94
+          }
+        }
+      },
+      {
+        "size": "L",
+        "ranges": {
+          "waistCm": {
+            "min": 70,
+            "max": 74
+          },
+          "hipCm": {
+            "min": 94,
+            "max": 98
+          }
+        }
+      },
+      {
+        "size": "XL",
+        "ranges": {
+          "waistCm": {
+            "min": 74,
+            "max": 78
+          },
+          "hipCm": {
+            "min": 98,
+            "max": 102
+          }
+        }
+      },
+      {
+        "size": "XXL",
+        "ranges": {
+          "waistCm": {
+            "min": 78,
+            "max": 84
+          },
+          "hipCm": {
+            "min": 102,
+            "max": 108
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "code": "SIZE_CHAN_VAY",
+    "name": "Chân váy",
+    "appliesTo": "Chân váy ngắn, chân váy dài",
+    "measurements": [
+      "waistCm",
+      "hipCm"
+    ],
+    "rows": [
+      {
+        "size": "S",
+        "ranges": {
+          "waistCm": {
+            "min": 62,
+            "max": 66
+          },
+          "hipCm": {
+            "min": 86,
+            "max": 90
+          }
+        }
+      },
+      {
+        "size": "M",
+        "ranges": {
+          "waistCm": {
+            "min": 66,
+            "max": 70
+          },
+          "hipCm": {
+            "min": 90,
+            "max": 94
+          }
+        }
+      },
+      {
+        "size": "L",
+        "ranges": {
+          "waistCm": {
+            "min": 70,
+            "max": 74
+          },
+          "hipCm": {
+            "min": 94,
+            "max": 98
+          }
+        }
+      },
+      {
+        "size": "XL",
+        "ranges": {
+          "waistCm": {
+            "min": 74,
+            "max": 78
+          },
+          "hipCm": {
+            "min": 98,
+            "max": 102
+          }
+        }
+      },
+      {
+        "size": "XXL",
+        "ranges": {
+          "waistCm": {
+            "min": 78,
+            "max": 84
+          },
+          "hipCm": {
+            "min": 102,
+            "max": 108
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "code": "SIZE_DAM",
+    "name": "Váy liền / đầm",
+    "appliesTo": "Váy liền, đầm",
+    "measurements": [
+      "bustCm",
+      "waistCm",
+      "hipCm"
+    ],
+    "rows": [
+      {
+        "size": "S",
+        "ranges": {
+          "bustCm": {
+            "min": 80,
+            "max": 84
+          },
+          "waistCm": {
+            "min": 62,
+            "max": 66
+          },
+          "hipCm": {
+            "min": 86,
+            "max": 90
+          }
+        }
+      },
+      {
+        "size": "M",
+        "ranges": {
+          "bustCm": {
+            "min": 84,
+            "max": 88
+          },
+          "waistCm": {
+            "min": 66,
+            "max": 70
+          },
+          "hipCm": {
+            "min": 90,
+            "max": 94
+          }
+        }
+      },
+      {
+        "size": "L",
+        "ranges": {
+          "bustCm": {
+            "min": 88,
+            "max": 92
+          },
+          "waistCm": {
+            "min": 70,
+            "max": 74
+          },
+          "hipCm": {
+            "min": 94,
+            "max": 98
+          }
+        }
+      },
+      {
+        "size": "XL",
+        "ranges": {
+          "bustCm": {
+            "min": 92,
+            "max": 96
+          },
+          "waistCm": {
+            "min": 74,
+            "max": 78
+          },
+          "hipCm": {
+            "min": 98,
+            "max": 102
+          }
+        }
+      },
+      {
+        "size": "XXL",
+        "ranges": {
+          "bustCm": {
+            "min": 96,
+            "max": 102
+          },
+          "waistCm": {
+            "min": 78,
+            "max": 84
+          },
+          "hipCm": {
+            "min": 102,
+            "max": 108
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,3 +1,5 @@
+import { PoliciesPage } from './pages/PoliciesPage';
+import { SizeGuidePage } from './pages/SizeGuidePage';
 import { useEffect } from 'react';
 import {
   createBrowserRouter,
@@ -50,6 +52,8 @@ export const appRoutes: RouteObject[] = [
     element: <Layout />,
     children: [
       { path: '/', element: <HomePage /> },
+      { path: '/policies', element: <PoliciesPage /> },
+      { path: '/size-guide', element: <SizeGuidePage /> },
       { path: '/coupons', element: <CouponsPage /> },
       { path: '/login', element: <AuthPage /> },
       { path: '/demo-payment', element: <DemoPaymentPage /> },

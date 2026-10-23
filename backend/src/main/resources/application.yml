@@ -58,10 +58,12 @@ application:
     secret: ${JWT_SECRET:local-development-secret-change-before-production-2026}
     access-token-minutes: ${JWT_ACCESS_MINUTES:480}
   ai:
+    gemini-api-key: ${GEMINI_API_KEY:}
+    gemini-model: ${GEMINI_MODEL:gemini-3.5-flash-lite}
     base-url: ${AI_API_URL:}
     api-key: ${AI_API_KEY:}
-    connect-timeout-seconds: ${AI_CONNECT_TIMEOUT_SECONDS:1}
-    read-timeout-seconds: ${AI_READ_TIMEOUT_SECONDS:2}
+    connect-timeout-seconds: ${AI_CONNECT_TIMEOUT_SECONDS:3}
+    read-timeout-seconds: ${AI_READ_TIMEOUT_SECONDS:30}
   cors:
     allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
 springdoc:

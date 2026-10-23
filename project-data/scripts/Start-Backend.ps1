@@ -2,6 +2,16 @@ param([int]$DatabasePort = 3307,[string]$AdminEmail = 'admin@forme.local',[strin
 $ErrorActionPreference = 'Stop'
 $dataRoot = Split-Path $PSScriptRoot -Parent
 $projectRoot = Split-Path $dataRoot -Parent
+. (Join-Path $PSScriptRoot 'Import-ProjectEnvironment.ps1')
+Import-ProjectEnvironment (Join-Path $projectRoot 'backend/.env')
+if ($env:JAVA_HOME -and -not (Test-Path -LiteralPath (Join-Path $env:JAVA_HOME 'bin/java.exe'))) {
+    $installedJdk = Get-ChildItem -LiteralPath (Join-Path $env:ProgramFiles 'Java') -Directory -ErrorAction SilentlyContinue |
+        Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'bin/javac.exe') } |
+        Sort-Object Name -Descending | Select-Object -First 1
+    if (-not $installedJdk) { throw 'JAVA_HOME is invalid. Set it to an installed JDK 17+ directory.' }
+    $env:JAVA_HOME = $installedJdk.FullName
+}
+if (-not $env:MAVEN_USER_HOME) { $env:MAVEN_USER_HOME = Join-Path $dataRoot '.m2' }
 $mailConfig = Join-Path $dataRoot '.local/mail.properties'
 if ((Test-Path -LiteralPath $mailConfig) -and -not $env:SPRING_CONFIG_ADDITIONAL_LOCATION) {
     $env:SPRING_CONFIG_ADDITIONAL_LOCATION = ([System.Uri]$mailConfig).AbsoluteUri

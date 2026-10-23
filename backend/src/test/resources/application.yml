@@ -21,6 +21,8 @@ application:
     secret: test-secret-that-is-long-enough-for-local-unit-tests
     access-token-minutes: 60
   ai:
+    gemini-api-key: ""
+    gemini-model: gemini-3.5-flash-lite
     base-url: ""
     api-key: ""
     connect-timeout-seconds: 1

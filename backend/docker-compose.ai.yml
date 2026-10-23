@@ -1,0 +1,40 @@
+name: forme-ai
+
+services:
+  ai:
+    image: forme-ai:${FORME_AI_TAG:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile.ai
+    restart: unless-stopped
+    init: true
+    network_mode: host
+    env_file:
+      - path: ./.env.ai
+        format: raw
+    volumes:
+      - ai-data:/app/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    stop_grace_period: 30s
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import os,urllib.request; r=urllib.request.Request('http://127.0.0.1:8001/health',headers={'Authorization':'Bearer '+os.environ['AI_API_KEY']}); urllib.request.urlopen(r,timeout=4).read()"
+      interval: 20s
+      timeout: 5s
+      start_period: 60s
+      retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+
+volumes:
+  ai-data:

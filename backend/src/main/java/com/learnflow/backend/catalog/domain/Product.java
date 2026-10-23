@@ -40,6 +40,9 @@ public class Product {
     @Column(name = "status", length = 20)
     public String status;
 
+    @Column(name = "size_chart_code", length = 32)
+    public String sizeChartCode;
+
     @Column(name = "created_at")
     public Instant createdAt;
 

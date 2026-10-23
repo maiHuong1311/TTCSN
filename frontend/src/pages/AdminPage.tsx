@@ -268,6 +268,7 @@ function ProductForm({ product: p, onSaved }: { product?: Product; onSaved: () =
           description: str(f, 'description'),
           brand: str(f, 'brand'),
           material: str(f, 'material'),
+          sizeChartCode: str(f, 'sizeChartCode') || null,
           gender: str(f, 'gender'),
           price: Number(f.get('price')),
           salePrice: numberOrNull(f, 'salePrice'),
@@ -313,6 +314,16 @@ function ProductForm({ product: p, onSaved }: { product?: Product; onSaved: () =
           <label>
             Chất liệu
             <input name="material" defaultValue={p?.material} maxLength={100} />
+          </label>
+          <label>
+            Bảng size áp dụng
+            <select name="sizeChartCode" defaultValue={p?.sizeChartCode || ''}>
+              <option value="">Chưa có / Không áp dụng</option>
+              <option value="SIZE_AO_NU">Áo nữ</option>
+              <option value="SIZE_QUAN_NU">Quần nữ</option>
+              <option value="SIZE_CHAN_VAY">Chân váy</option>
+              <option value="SIZE_DAM">Váy liền / đầm</option>
+            </select>
           </label>
           <label>
             Đối tượng

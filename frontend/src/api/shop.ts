@@ -1,3 +1,4 @@
+import { useUIStore } from '../stores/uiStore';
 import { request, body } from './client';
 import type {
   Address,
@@ -26,12 +27,12 @@ export const fetchCart = () => request<Cart>('/carts/current');
 export const addCartItem = (variantId: number, quantity: number) =>
   request<Cart>('/carts/current/items', {
     method: 'POST',
-    body: body({ variantId, quantity }),
+    body: body({ variantId, quantity, trackingConsent: useUIStore.getState().tracking }),
   });
 export const updateCartItem = (variantId: number, quantity: number) =>
   request<Cart>('/carts/current/items', {
     method: 'PUT',
-    body: body({ variantId, quantity }),
+    body: body({ variantId, quantity, trackingConsent: useUIStore.getState().tracking }),
   });
 export const deleteCartItem = (id: number) =>
   request<Cart>(`/carts/current/items/${id}`, { method: 'DELETE' });
@@ -49,7 +50,7 @@ export const createQuote = (couponCode: string) =>
     body: body({ couponCode }),
   });
 export const createOrder = (r: CheckoutRequest) =>
-  request<Order>('/orders', { method: 'POST', body: body(r) });
+  request<Order>('/orders', { method: 'POST', body: body({ ...r, trackingConsent: useUIStore.getState().tracking }) });
 export const fetchOrders = () => request<Order[]>('/orders');
 export const fetchOrder = (id: number) => request<Order>(`/orders/${id}`);
 export const cancelOrder = (id: number) =>

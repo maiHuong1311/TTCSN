@@ -3,7 +3,7 @@ import { useAuthStore } from '../stores/authStore';
 import { ApiError } from './client';
 import type { ChatRequest, ChatResponse } from '../types/domain';
 export const fetchAiStatus = () => request<{ configured: boolean; mode: string }>('/ai/status');
-export async function createChat(r: ChatRequest): Promise<ChatResponse> {
+export async function createChat(r: ChatRequest, onStatus?: (message: string) => void): Promise<ChatResponse> {
   const response = await fetch('/api/ai/chat/stream', {
     method: 'POST',
     headers: {
@@ -26,15 +26,28 @@ export async function createChat(r: ChatRequest): Promise<ChatResponse> {
     const normalized = pending.replaceAll('\r\n', '\n');
     const frames = normalized.split('\n\n');
     pending = frames.pop() || '';
-    for (const frame of frames)
+    for (const frame of frames) {
+      if (frame.includes('event:error')) {
+        const data = frame.split('\n').filter((line) => line.startsWith('data:')).map((line) => line.slice(5)).join('\n');
+        const problem = JSON.parse(data);
+        await reader.cancel();
+        throw new ApiError(problem.status || 503, problem.detail || 'Trợ lý hiện không khả dụng.');
+      }
+      if (frame.includes('event:status')) {
+        const status = frame.split('\n').filter((line) => line.startsWith('data:')).map((line) => line.slice(5)).join('\n');
+        onStatus?.(status);
+      }
       if (frame.includes('event:result')) {
         const data = frame
           .split('\n')
           .filter((x) => x.startsWith('data:'))
           .map((x) => x.slice(5))
           .join('\n');
-        return JSON.parse(data);
+        const result = JSON.parse(data);
+        await reader.cancel();
+        return result;
       }
+    }
     if (done) break;
   }
   throw new Error('Kết nối với trợ lý đã kết thúc trước khi có phản hồi. Vui lòng thử lại.');

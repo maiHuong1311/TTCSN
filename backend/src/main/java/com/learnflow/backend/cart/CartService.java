@@ -100,6 +100,7 @@ public class CartService {
         );
         i.quantity = quantity;
         items.save(i);
+        if (increment && r.trackingConsent()) catalog.trackEvent(u, v.productId, "Cart");
         return get(u);
     }
 

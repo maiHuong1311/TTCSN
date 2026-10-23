@@ -72,6 +72,19 @@ jobs:
     env:
       AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
     steps:
+      - name: Check AWS authentication configuration
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          if [[ -n "$AWS_ROLE_ARN" ]]; then
+            echo 'Using GitHub OIDC to assume the configured AWS role.'
+          elif [[ -n "$AWS_ACCESS_KEY_ID" && -n "$AWS_SECRET_ACCESS_KEY" ]]; then
+            echo 'Using the configured AWS access-key secrets.'
+          else
+            echo '::error::Missing AWS authentication. Set repository secret AWS_ROLE_ARN for GitHub OIDC, or both AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. EC2 SSH secrets and the EC2 instance role do not authenticate this GitHub-hosted runner.'
+            exit 1
+          fi
       - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
       - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad
         with:

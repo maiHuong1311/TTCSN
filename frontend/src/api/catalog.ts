@@ -17,9 +17,9 @@ export function fetchProducts(filters: ProductFilters) {
 }
 export const fetchProduct = (id: number) => request<Product>(`/products/${id}`);
 export const fetchCategories = () => request<Category[]>('/categories');
-export const fetchRecommendations = (productId?: number, match = false) =>
+export const fetchRecommendations = (productId?: number, match = false, personalized = false) =>
   request<Product[]>(
-    `/recommendations?match=${match}${productId ? '&productId=' + productId : ''}`,
+    `/recommendations?personalized=${personalized}&match=${match}${productId ? '&productId=' + productId : ''}`,
   );
 export const trackView = (id: number) => request<void>(`/products/${id}/views`, { method: 'POST' });
 export const deleteInteractions = () => request<void>('/interactions', { method: 'DELETE' });
@@ -28,3 +28,5 @@ export const fetchReviewEligibility = (id: number) =>
   request<ReviewEligibility>(`/products/${id}/reviews/eligibility`);
 export const createReview = (id: number, r: ReviewRequest) =>
   request<Review>(`/products/${id}/reviews`, { method: 'POST', body: body(r) });
+
+export const trackSearch = (query: string) => request<void>('/search-events', { method: 'POST', body: body({query, consent: true}) });
