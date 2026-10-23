@@ -12,3 +12,8 @@ frontend/*.tsbuildinfo
 !**/.env.example
 project-data/.env
 *.log
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/ai-service/.data/
+backend/ai-service/.venv/

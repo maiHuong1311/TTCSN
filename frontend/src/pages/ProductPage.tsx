@@ -130,6 +130,10 @@ export function ProductPage() {
             {p.brand} / {display(p.gender)}
           </div>
           <h1>{p.productName}</h1>
+          {p.sizeChartCode && <p className="product-size-links">
+            <Link className="text-button" to={'/size-guide#' + p.sizeChartCode}>Xem bảng size</Link>{' · '}
+            <Link className="text-button" to={'/advisor?productId=' + p.productId + '&sizeChartCode=' + p.sizeChartCode}>Tư vấn size theo số đo</Link>
+          </p>}
           <div className="detail-price">
             {money(p.salePrice ?? p.price)} {p.salePrice !== null && <del>{money(p.price)}</del>}
           </div>

@@ -40,7 +40,7 @@ export function AccountPage() {
     mutationFn: deleteInteractions,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: catalogKeys.all });
-      notify('Đã xóa lịch sử xem sản phẩm.');
+      notify('Đã xóa lịch sử gợi ý sản phẩm.');
     },
   });
   if (profile.isPending) return <Loading />;
@@ -112,10 +112,10 @@ export function AccountPage() {
                 checked={tracking}
                 onChange={(e) => setTracking(e.target.checked)}
               />{' '}
-              Cho phép dùng lịch sử xem để gợi ý sản phẩm
+              Cho phép dùng lịch sử tương tác để gợi ý sản phẩm
             </label>
             <p className="subtle">
-              Mặc định tắt. Khi bật, hệ thống chỉ lưu lượt xem sản phẩm trong lúc bạn đăng nhập. Bạn
+              Mặc định tắt. Khi bật, hệ thống dùng lịch sử xem, tìm kiếm, thêm giỏ và mua hàng trong 90 ngày gần nhất; dữ liệu cũ được dọn định kỳ. Bạn
               có thể tắt bất cứ lúc nào hoặc xóa lịch sử bên dưới.
             </p>
             <button
@@ -124,7 +124,7 @@ export function AccountPage() {
               disabled={clear.isPending}
               onClick={() => clear.mutate()}
             >
-              Xóa lịch sử xem
+              Xóa lịch sử gợi ý
             </button>
             <ErrorMessage error={clear.error} />
           </div>

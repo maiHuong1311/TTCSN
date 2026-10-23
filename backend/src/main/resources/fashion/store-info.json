@@ -1,0 +1,55 @@
+{
+  "contact": {
+    "hotline": "0982655491",
+    "email": "maihunw@gmail.com",
+    "address": "Nhổn, Hà Nội",
+    "supportHours": "08:00–23:00",
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  "policies": [
+    {
+      "id": "shipping",
+      "title": "Chính sách giao hàng",
+      "paragraphs": [
+        "Giao hàng trên toàn quốc. Phí vận chuyển được hiển thị tại trang thanh toán trước khi xác nhận đặt hàng.",
+        "Thời gian dự kiến: nội thành 1–3 ngày làm việc; ngoại tỉnh 3–7 ngày làm việc.",
+        "Khách hàng có thể theo dõi đơn hàng trên website. Nếu giao hàng chậm, liên hệ cửa hàng để kiểm tra."
+      ]
+    },
+    {
+      "id": "returns",
+      "title": "Chính sách đổi trả",
+      "paragraphs": [
+        "Hỗ trợ yêu cầu đổi trả trong vòng 7 ngày kể từ khi nhận hàng đối với trường hợp đủ điều kiện.",
+        "Áp dụng khi sản phẩm lỗi do nhà sản xuất hoặc giao sai mẫu mã, kích thước, màu sắc so với đơn hàng.",
+        "Đổi size: sản phẩm còn nguyên tem mác, chưa sử dụng hoặc giặt tẩy. Không áp dụng với hư hỏng do sử dụng, bảo quản sai hoặc không đủ điều kiện đã công bố.",
+        "Cửa hàng chịu phí vận chuyển khi giao sai hoặc sản phẩm lỗi. Phí vận chuyển đổi size theo nhu cầu được thông báo trước khi xử lý."
+      ]
+    },
+    {
+      "id": "payments",
+      "title": "Chính sách thanh toán",
+      "paragraphs": [
+        "COD: thanh toán khi nhận sản phẩm. Chuyển khoản theo hướng dẫn khi đặt hàng. Thanh toán trực tuyến chỉ áp dụng khi cổng thanh toán đã được tích hợp và kích hoạt.",
+        "Tổng tiền, phí vận chuyển và giảm giá hiển thị trước khi xác nhận đặt hàng. QR giả lập chỉ phục vụ thử nghiệm, không chuyển tiền thật."
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Chính sách bảo mật thông tin",
+      "paragraphs": [
+        "Thông tin khách hàng dùng để xử lý đơn, giao hàng và hỗ trợ sau bán; chỉ thu thập dữ liệu cần thiết như họ tên, số điện thoại, địa chỉ và email. Không bán thông tin cá nhân cho bên thứ ba.",
+        "Chỉ chia sẻ với đơn vị vận chuyển hoặc thanh toán khi cần cung cấp dịch vụ hoặc theo quy định pháp luật. Khách hàng có thể liên hệ để yêu cầu kiểm tra, chỉnh sửa hoặc xóa dữ liệu theo quy định áp dụng.",
+        "Lịch sử tương tác phục vụ gợi ý chỉ được thu thập khi khách hàng cho phép. Khi chọn dùng Gemini, câu hỏi được xử lý qua dịch vụ AI; số đo trong các ô tư vấn size và thông tin đơn hàng được xử lý tại backend, không gửi cho Gemini."
+      ]
+    },
+    {
+      "id": "support",
+      "title": "Hỗ trợ khách hàng",
+      "paragraphs": [
+        "Tư vấn chọn size áo, quần, chân váy và đầm. Giải đáp thông tin sản phẩm, giá bán, tình trạng còn hàng.",
+        "Hỗ trợ kiểm tra đơn, yêu cầu đổi trả, tiếp nhận phản hồi và khiếu nại."
+      ]
+    }
+  ]
+}

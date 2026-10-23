@@ -3,7 +3,7 @@
 ## Cấu hình deploy EC2 — 19/10/2026
 
 - Thêm Docker Compose chạy backend cổng 8081, dùng MySQL/Redis trên host; `.env` nằm cạnh Compose tại `~/ttcsn/TTCSN/backend`, được đọc raw và không bị source/ghi đè. Thư mục ảnh bind mount `backend/uploads/product-images`.
-- `bash -n backend/deploy.sh` đạt. Script test bằng Docker/AWS giả: **7 ca đạt**, gồm deploy thành công, rollback thành công/thất bại, lỗi bản đầu, lỗi pull không thay container, từ chối env/tag sai. Không kết nối máy chủ hoặc thay đổi database khi kiểm thử.
+- `bash -n backend/deploy.sh` đạt. Script test bằng Docker/AWS giả: **8 ca đạt**, gồm deploy thành công, rollback thành công/thất bại, lỗi bản đầu, lỗi pull không thay container, từ chối env/tag sai và thiếu Compose có thông báo cài plugin. Các kiểm thử mô phỏng không kết nối máy chủ hoặc thay đổi database.
 - Docker Compose chính thức v5.6.0 (đã xác minh SHA-256) chạy `config --quiet` thành công với fixture giả; kiểm tra host networking, port 8081, dấu `$`/`#` và dấu `&` trong JDBC URL. `config` escape dollar khi kết xuất cấu hình; fixture đã kiểm tra có xét quy tắc này.
 - Workflow đã được `actionlint v1.7.12` (xác minh SHA-256) kiểm tra thành công. Các action được ghim bằng commit SHA. Workflow chỉ deploy main, test với MySQL/Redis riêng, push ECR rồi SSH gọi script theo SHA.
 - Chưa build Docker image thực vì máy phiên này không có Docker Engine; chưa chạy workflow hoặc deploy EC2. Cần khai báo quyền push ECR cho GitHub, các SSH secrets và cài Compose >=2.30 trên EC2 trước khi chạy. Hướng dẫn: `DEPLOY_EC2.md`.
@@ -128,3 +128,23 @@ Log chi tiết ở `project-data/.local/final-verify.log`, `project-data/.local/
 - API tạo đánh giá bắt buộc đúng tài khoản mua, đúng sản phẩm trong đơn Delivered; giữ quy tắc mỗi tài khoản đánh giá sản phẩm một lần. GET /api/products/{id}/reviews/eligibility cần JWT, chỉ cung cấp quyền của tài khoản hiện tại. Frontend ẩn form khi chưa đủ điều kiện/đã đánh giá, cập nhật quyền sau gửi thành công.
 - Integration tests phủ Pending, Confirmed, Shipping, Cancelled, Delivered; người khác và sản phẩm không mua bị từ chối; Delivered được gửi một lần và lần sau 409. Frontend tests xác nhận ẩn form, hiện và gửi với người đủ điều kiện, không hiện lại khi đã đánh giá.
 - Verify.ps1 -MySql + Redis: 46 backend tests, 28 frontend tests đều đạt, lint/build đạt. Log project-data/.local/delivered-reviews-verify.log. Backend local đã khởi động; smoke quyền với tài khoản không mua trả canReview=false, gọi không JWT trả 401. Không gửi thư/thu tiền thật khi kiểm thử.
+
+## AI local — 23/10/2026
+Backend verify: 61 kiểm thử đạt, gồm MySQL migration V15 và Redis integration. Frontend: lint/build đạt, 43 kiểm thử đạt. Python FastAPI/Chroma: 12 kiểm thử đạt với HTTP Gemini giả lập, không gọi Google thật. Xem HUONG_DAN_AI_LOCAL.md để cấu hình khóa và chạy thủ công. Đã kiểm tra thủ công local: FAQ, size S và Gemini + RAG trả hai sản phẩm thực tế; API health và frontend HTTP 200. Khóa riêng không được commit. Chưa triển khai dịch vụ AI lên AWS.
+
+## Gemini API trực tiếp — 24/10/2026
+
+- Người dùng tự điền khóa trong backend/.env được Git bỏ qua. Đã kiểm tra khóa truy cập model gemini-3.5-flash-lite và tạo câu trả lời thật; không in hoặc đưa khóa vào mã nguồn.
+- Spring Boot gọi Google trực tiếp, không cần dịch vụ Python. Kết quả có nhãn Gemini API, giữ nguyên API/SSE cho frontend. Tư vấn là nội dung của model; thẻ sản phẩm kiểm tra ID/trạng thái/giá/tồn kho tại backend. Model lỗi/quota/timeout có thông báo an toàn và nhãn gợi ý local.
+- Backend: 33 test đạt, không lỗi hoặc bỏ qua: 29 unit về Gemini/provider/service/recommendation/size và 4 integration về size/FAQ/consent tìm kiếm/quyền xem đơn trên fashion_store_test. Test tự động dùng HTTP mock, không gọi Google.
+- Frontend: 4 test AdvisorPage/ai API đạt, ESLint và TypeScript/Vite build đạt. Chưa thực hiện kiểm tra trình duyệt trực quan trong đợt này.
+- Live qua Vite 5173 -> Spring Boot 8080 -> Google: 8/8 kiểm tra đạt. Năm lượt thực sự dùng Gemini gồm hỏi đáp chất liệu, áo nữ dưới 500 nghìn không lấy quần/váy, phối áo oversize, không bịa giày Nike ngoài danh mục và trả lời qua SSE. Ba kiểm tra nội bộ: tắt consent Gemini, ngân sách 0 và bảng size M.
+- Lượt cuối các câu Gemini mất khoảng 1,3–3,3 giây; không phải cam kết độ trễ hoặc đánh giá tải lớn. Chi tiết: project-data/.local/gemini-live-results.json, không có khóa/JWT.
+- Backend và frontend local đã được khởi động với bản cuối. Không tạo đơn hàng, không gửi email, không ghi lịch sử tương tác trong script live. Test integration dùng database riêng.
+- Giới hạn: hỏi đáp từng câu, chưa có bộ nhớ hội thoại nhiều lượt hoặc token streaming; chưa deploy AWS. Hướng dẫn sử dụng/local/AWS: HUONG_DAN_GEMINI_TRUC_TIEP.md. Các báo cáo audit trước khi cấu hình Gemini là dữ liệu lịch sử, không còn phản ánh trạng thái kết nối hiện tại.
+
+## Kiểm tra trước khi merge main — 24/10/2026
+
+- Maven verify hoàn tất trên fashion_store_test và Redis local: 82 test đạt, 0 failures, 0 errors, 0 skipped; JAR Spring Boot đã đóng gói thành công. Log riêng: project-data/.local/pre-merge-backend-verify.log.
+- Frontend ESLint, production build và toàn bộ 43 test đạt; bundle đã bỏ nhãn Gemini API trên giao diện.
+- Kiểm tra 473 đường dẫn tracked/new không phát hiện khóa Gemini thực tế, private key hoặc API token. backend/.env và project-data/.local tiếp tục được Git bỏ qua.

@@ -47,12 +47,16 @@ public class CatalogController {
         service.clearTracking((Long) a.getPrincipal());
     }
 
+    @PostMapping("/search-events")
+    public void search(Authentication a, @jakarta.validation.Valid @RequestBody SearchEventRequest r) { service.trackSearch((Long)a.getPrincipal(), r.query()); }
+
     @GetMapping("/recommendations")
     public List<ProductResponse> recommendations(
         Authentication a,
         @RequestParam(required = false) Long productId,
-        @RequestParam(defaultValue = "false") boolean match
+        @RequestParam(defaultValue = "false") boolean match,
+        @RequestParam(defaultValue = "false") boolean personalized
     ) {
-        return service.suggestions((Long) a.getPrincipal(), productId, match);
+        return service.suggestions((Long) a.getPrincipal(), productId, match, personalized);
     }
 }

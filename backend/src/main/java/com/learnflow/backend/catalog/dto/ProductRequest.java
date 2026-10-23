@@ -17,7 +17,8 @@ public record ProductRequest(
     @NotBlank @Pattern(regexp = "Active|Inactive") String status,
     @NotEmpty @Size(max = 100) List<@Valid VariantRequest> variants,
     @Size(max = 20)
-    List<@Pattern(regexp = "/assets/[a-zA-Z0-9._/-]+|/api/images/[a-f0-9-]+\\.(png|jpg)|https://[^\\s<>]+") @Size(max = 500) String> images
+    List<@Pattern(regexp = "/assets/[a-zA-Z0-9._/-]+|/api/images/[a-f0-9-]+\\.(png|jpg)|https://[^\\s<>]+") @Size(max = 500) String> images,
+    @Pattern(regexp = "SIZE_AO_NU|SIZE_QUAN_NU|SIZE_CHAN_VAY|SIZE_DAM") String sizeChartCode
 ) {
     public record VariantRequest(
         Long variantId,

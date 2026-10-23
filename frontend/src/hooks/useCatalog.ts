@@ -1,3 +1,4 @@
+import { useUIStore } from '../stores/uiStore';
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../api/catalog';
 import type { ProductFilters } from '../types/domain';
@@ -21,11 +22,13 @@ export const useProduct = (id: number) =>
   useQuery({ queryKey: catalogKeys.detail(id), queryFn: () => api.fetchProduct(id) });
 export const useCategories = () =>
   useQuery({ queryKey: catalogKeys.categories(), queryFn: api.fetchCategories });
-export const useRecommendations = (id?: number, match = false) =>
-  useQuery({
-    queryKey: catalogKeys.recommendations(id, match),
-    queryFn: () => api.fetchRecommendations(id, match),
+export const useRecommendations = (id?: number, match = false) => {
+  const tracking = useUIStore((s) => s.tracking);
+  return useQuery({
+    queryKey: [...catalogKeys.recommendations(id, match), tracking],
+    queryFn: () => api.fetchRecommendations(id, match, tracking),
   });
+};
 export const useReviews = (id: number) =>
   useQuery({ queryKey: catalogKeys.reviews(id), queryFn: () => api.fetchReviews(id) });
 export const useReviewEligibility = (id: number) =>
