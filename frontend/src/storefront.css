@@ -2252,4 +2252,7 @@ th {
 .advisor-answer { white-space: pre-line; }
 .advisor-quick-questions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .advisor-quick-questions button { white-space: normal; text-align: left; }
+.advisor-extra-fields { margin: 8px 0 22px; }
+.advisor-extra-fields > summary { color: var(--color-muted, #777); cursor: pointer; padding: 8px 0; }
+.advisor-extra-fields[open] > summary { margin-bottom: 18px; }
 .product-size-links { display: flex; flex-wrap: wrap; gap: 12px; }
