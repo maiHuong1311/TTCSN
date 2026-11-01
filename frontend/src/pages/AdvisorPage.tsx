@@ -88,6 +88,34 @@ export function AdvisorPage() {
       </div>
       <div className="advisor-workspace">
         <form className="panel" onSubmit={(e) => chat.mutate(form(e))}>
+          <label>
+            Bạn cần tư vấn điều gì?
+            <textarea
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+              maxLength={2000}
+              placeholder="Ví dụ: Tôi cần trang phục đi làm dưới 500 nghìn"
+            />
+          </label>
+          <label>
+            Sản phẩm cần tư vấn (không bắt buộc)
+            <select
+              name="productId"
+              value={productId}
+              onChange={(e) => setProductId(e.target.value)}
+            >
+              <option value="">Chưa chọn sản phẩm</option>
+              {products.data?.content.map((p) => (
+                <option key={p.productId} value={p.productId}>
+                  {p.productName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <details className="advisor-extra-fields" open={params.has('sizeChartCode')}>
+            <summary>Thêm thông tin để được tư vấn chi tiết</summary>
           <div className="advisor-quick-questions">
             {[
               'Tư vấn size theo số đo của tôi.',
@@ -105,32 +133,6 @@ export function AdvisorPage() {
               </button>
             ))}
           </div>
-          <label>
-            Bạn cần tư vấn điều gì?
-            <textarea
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              maxLength={2000}
-              placeholder="Ví dụ: Tôi cần trang phục đi làm dưới 500 nghìn"
-            />
-          </label>
-          <label>
-            Sản phẩm cần tư vấn size (không bắt buộc)
-            <select
-              name="productId"
-              value={productId}
-              onChange={(e) => setProductId(e.target.value)}
-            >
-              <option value="">Đối chiếu bảng size chung</option>
-              {products.data?.content.map((p) => (
-                <option key={p.productId} value={p.productId}>
-                  {p.productName}
-                </option>
-              ))}
-            </select>
-          </label>
           <label>
             Bảng size
             <select
@@ -233,6 +235,7 @@ export function AdvisorPage() {
             Các ô số đo và thông tin đơn hàng được xử lý tại cửa hàng. Chính
             sách và bảng size dùng được mà không cần bật Gemini.
           </p>
+          </details>
           <Button disabled={chat.isPending}>
             {chat.isPending ? 'Đang xử lý…' : 'Gửi câu hỏi ↗'}
           </Button>
