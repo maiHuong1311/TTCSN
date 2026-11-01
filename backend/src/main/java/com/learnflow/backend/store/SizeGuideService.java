@@ -101,7 +101,11 @@ public class SizeGuideService {
                 null,
                 "Số đo " +
                     label(m) +
-                    " nằm ngoài bảng size đã công bố. Vui lòng liên hệ cửa hàng; hệ thống không tự ước lượng size ngoài bảng."
+                " (" + value.toPlainString() + " cm) nằm ngoài bảng " + chart.name() +
+                ". Khoảng đã công bố: " +
+                chart.rows().get(0).ranges().get(m).min().toPlainString() + "–" +
+                chart.rows().get(chart.rows().size() - 1).ranges().get(m).max().toPlainString() +
+                " cm. Vui lòng kiểm tra đơn vị cm và số đo; nếu số đo chính xác, hãy liên hệ cửa hàng để được tư vấn."
             );
             chosen = Math.max(chosen, index);
         }

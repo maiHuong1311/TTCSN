@@ -31,6 +31,23 @@ class FashionAIServiceTest {
   );
 
   @Test
+  void selectedChartRequestsMeasurementsWithoutSizeKeyword() {
+    var request = new ChatRequest(
+      "Tôi cần tư vấn", null, null, null, null, "SIZE_QUAN_NU",
+      null, null, null, null, null, false
+    );
+    var advice = new com.learnflow.backend.store.SizeGuideService.Advice(
+      "SIZE_QUAN_NU", "Quần nữ", null, "Vui lòng bổ sung vòng eo, vòng ba."
+    );
+    when(sizes.advise(eq("SIZE_QUAN_NU"), anyMap(), isNull())).thenReturn(advice);
+
+    var result = service.chat(1L, request);
+
+    assertEquals(advice.explanation(), result.answer());
+    verifyNoInteractions(provider, catalog);
+  }
+
+  @Test
   void displaysDirectGeminiAdviceAndKeepsOversizeAsStylingIntent() {
     var p = GeminiFashionAIClientTest.product(1, 2, "Active");
     var request = GeminiFashionAIClientTest.request(

@@ -82,6 +82,14 @@ class SizeGuideServiceTest {
     }
 
     @Test
+    void reportsDecimalValueAndPublishedRangeForOutOfRangeMeasurements() {
+        var result = guide.advise("SIZE_QUAN_NU", measures(null, "30.2", "92", null), null);
+        assertNull(result.size());
+        assertTrue(result.explanation().contains("30.2 cm"));
+        assertTrue(result.explanation().contains("62–84 cm"));
+    }
+
+    @Test
     void mixedMeasurementsExplainRoomierFit() {
         var result = guide.advise(
             "SIZE_DAM",
