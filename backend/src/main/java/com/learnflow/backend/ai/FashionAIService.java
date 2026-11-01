@@ -74,6 +74,7 @@ public class FashionAIService {
         .matcher(text)
         .find() ||
       text.contains("kích cỡ") ||
+      (r.sizeChartCode() != null && r.productId() == null) ||
       r.bustCm() != null ||
       r.waistCm() != null ||
       r.hipCm() != null ||
