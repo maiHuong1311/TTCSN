@@ -26,8 +26,8 @@ public class HttpFashionAIProvider implements FashionAIProvider {
     this.key = key;
     this.gemini = gemini;
     var f = new SimpleClientHttpRequestFactory();
-    f.setConnectTimeout(connect * 1000);
-    f.setReadTimeout(read * 1000);
+    f.setConnectTimeout(Math.min(1, Math.max(1, connect)) * 1000);
+    f.setReadTimeout(Math.min(3, Math.max(1, read)) * 1000);
     client = RestClient.builder().requestFactory(f).build();
   }
 

@@ -4,6 +4,7 @@ import com.learnflow.backend.ai.dto.*;
 import com.learnflow.backend.catalog.CatalogService;
 import com.learnflow.backend.order.OrderService;
 import java.util.*;
+import java.util.concurrent.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,41 @@ public class FashionAIService {
   private final OrderService orders;
   private final com.learnflow.backend.store.StoreInfoService store;
   private final com.learnflow.backend.store.SizeGuideService sizes;
+  private final ThreadPoolExecutor adviceExecutor = new ThreadPoolExecutor(
+    0, 4, 30, TimeUnit.SECONDS, new SynchronousQueue<>(), task -> {
+      Thread thread = new Thread(task, "fashion-advice");
+      thread.setDaemon(true);
+      return thread;
+    }
+  );
+
+  @jakarta.annotation.PreDestroy
+  void stopAdviceExecutor() {
+    adviceExecutor.shutdownNow();
+  }
+
+  private FashionAIProvider.Selection adviseQuickly(ChatRequest request,
+      List<com.learnflow.backend.catalog.dto.ProductResponse> candidates) {
+    Future<FashionAIProvider.Selection> task;
+    try {
+      task = adviceExecutor.submit(() -> provider.advise(request, candidates));
+    } catch (RejectedExecutionException ex) {
+      throw new AIProviderException("Trợ lý đang bận. Đây là gợi ý nhanh theo danh mục cửa hàng.");
+    }
+    try {
+      return task.get(2800, TimeUnit.MILLISECONDS);
+    } catch (TimeoutException ex) {
+      task.cancel(true);
+      throw new AIProviderException("Để bạn không phải chờ, đây là gợi ý nhanh theo danh mục cửa hàng.");
+    } catch (InterruptedException ex) {
+      task.cancel(true);
+      Thread.currentThread().interrupt();
+      throw new AIProviderException("Đây là gợi ý nhanh theo danh mục cửa hàng.");
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof AIProviderException cause) throw cause;
+      throw new AIProviderException("Trợ lý hiện chưa thể phản hồi. Đây là gợi ý nhanh theo danh mục cửa hàng.", ex.getCause());
+    }
+  }
 
   public FashionAIService(
     FashionAIProvider p,
@@ -133,8 +169,9 @@ public class FashionAIService {
           ) <= 0
       )
       .toList();
+    var quickSuggestions = catalog.contextSuggestions(r.message(), candidates);
     try {
-      var result = provider.advise(r, candidates);
+      var result = adviseQuickly(r, candidates);
       if (result == null) throw new IllegalStateException();
       Map<Long, com.learnflow.backend.catalog.dto.ProductResponse> verified =
         new LinkedHashMap<>();
@@ -205,18 +242,26 @@ public class FashionAIService {
     } catch (AIProviderException ex) {
       return new ChatResponse(
         "Gợi ý local",
-        ex.getMessage() + " Đây là gợi ý local theo dữ liệu cửa hàng.",
+        quickAnswer(ex.getMessage(), quickSuggestions),
         null,
-        catalog.contextSuggestions(r.message())
+        quickSuggestions
       );
     } catch (Exception ex) {
       return new ChatResponse(
         "Gợi ý local",
-        "Gemini hiện chưa thể phản hồi. Đây là gợi ý theo dữ liệu cửa hàng; bạn có thể thử lại sau.",
+        quickAnswer("Đây là gợi ý nhanh theo danh mục cửa hàng.", quickSuggestions),
         null,
-        catalog.contextSuggestions(r.message())
+        quickSuggestions
       );
     }
+  }
+
+  private String quickAnswer(String reason, List<com.learnflow.backend.catalog.dto.ProductResponse> products) {
+    if (products.isEmpty()) return reason + " Chưa tìm thấy sản phẩm còn hàng trong ngân sách hiện tại; bạn có thể thử mô tả hoặc ngân sách khác.";
+    return reason + " Bạn có thể tham khảo: " + products.stream().limit(3)
+      .map(com.learnflow.backend.catalog.dto.ProductResponse::productName)
+      .collect(java.util.stream.Collectors.joining(", ")) +
+      ". Xem giá, màu và kích cỡ còn hàng trên các thẻ sản phẩm bên dưới.";
   }
 
   private String statusLabel(String value) {

@@ -6,4 +6,5 @@ public interface ProductImageRepository
     extends org.springframework.data.jpa.repository.JpaRepository<ProductImage, Long>
 {
     java.util.List<ProductImage> findByProductId(Long id);
+    java.util.List<ProductImage> findByProductIdInOrderById(java.util.Collection<Long> ids);
 }
