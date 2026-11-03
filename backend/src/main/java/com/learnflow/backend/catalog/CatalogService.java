@@ -330,11 +330,19 @@ public class CatalogService {
     }
 
     public List<ProductResponse> availableCatalog() {
-        return products
+        var active = products
             .findAll()
             .stream()
             .filter(p -> "Active".equals(p.status))
-            .map(this::response)
+            .toList();
+        if (active.isEmpty()) return List.of();
+        var ids = active.stream().map(p -> p.id).toList();
+        var allVariants = variants.findByProductIdInOrderById(ids).stream()
+            .collect(java.util.stream.Collectors.groupingBy(v -> v.productId));
+        var allImages = images.findByProductIdInOrderById(ids).stream()
+            .collect(java.util.stream.Collectors.groupingBy(i -> i.productId));
+        return active.stream()
+            .map(p -> response(p, allVariants.getOrDefault(p.id, List.of()), allImages.getOrDefault(p.id, List.of())))
             .filter(p ->
                 p
                     .variants()
@@ -409,8 +417,12 @@ public class CatalogService {
     }
 
     public List<ProductResponse> contextSuggestions(String query) {
+        return contextSuggestions(query, availableCatalog());
+    }
+
+    public List<ProductResponse> contextSuggestions(String query, List<ProductResponse> catalog) {
         var maximum = maximumPrice(query);
-        var candidates = availableCatalog()
+        var candidates = catalog
             .stream()
             .filter(
                 p ->
@@ -491,6 +503,10 @@ public class CatalogService {
     }
 
     private ProductResponse response(Product p) {
+        return response(p, variants.findByProductIdOrderById(p.id), images.findByProductId(p.id));
+    }
+
+    private ProductResponse response(Product p, List<ProductVariant> productVariants, List<ProductImage> productImages) {
         return new ProductResponse(
             p.id,
             p.categoryId,
@@ -504,8 +520,7 @@ public class CatalogService {
             p.status,
             p.createdAt,
             p.updatedAt,
-            variants
-                .findByProductIdOrderById(p.id)
+            productVariants
                 .stream()
                 .map(v ->
                     new ProductResponse.VariantResponse(
@@ -518,8 +533,7 @@ public class CatalogService {
                     )
                 )
                 .toList(),
-            images
-                .findByProductId(p.id)
+            productImages
                 .stream()
                 .map(i ->
                     new ProductResponse.ImageResponse(

@@ -10,6 +10,7 @@ import com.learnflow.backend.order.OrderService;
 import java.math.BigDecimal;
 import java.util.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 
 class FashionAIServiceTest {
 
@@ -29,6 +30,29 @@ class FashionAIServiceTest {
     store,
     sizes
   );
+
+  @AfterEach
+  void stopWorkers() {
+    service.stopAdviceExecutor();
+  }
+
+  @Test
+  void slowGeminiReturnsRankedProductsWithinFourSeconds() {
+    var request = GeminiFashionAIClientTest.request("Gợi ý trang phục đi tiệc", true);
+    var product = GeminiFashionAIClientTest.product(1, 2, "Active");
+    when(provider.configured()).thenReturn(true);
+    when(catalog.availableCatalog()).thenReturn(List.of(product));
+    when(catalog.contextSuggestions(request.message(), List.of(product))).thenReturn(List.of(product));
+    when(provider.advise(request, List.of(product))).thenAnswer(call -> {
+      Thread.sleep(10000);
+      return null;
+    });
+    var result = assertTimeoutPreemptively(java.time.Duration.ofSeconds(4), () -> service.chat(1L, request));
+    assertEquals("Gợi ý local", result.mode());
+    assertEquals(List.of(product), result.products());
+    assertTrue(result.answer().contains(product.productName()));
+    verify(catalog, never()).contextSuggestions(request.message());
+  }
 
   @Test
   void selectedChartRequestsMeasurementsWithoutSizeKeyword() {
